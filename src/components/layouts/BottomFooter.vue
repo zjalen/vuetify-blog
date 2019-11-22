@@ -7,7 +7,7 @@
       tile
       width="100%"
       class="text-center footer-card"
-      :color="$vuetify.theme.currentTheme.secondary.base"
+      color="secondary"
     >
       <v-card-text>
         <v-btn
@@ -53,6 +53,6 @@ export default {
 </script>
 <style scoped>
 .text-style {
-  color: var(--v-primary);
+  color: var(--v-primary) !important;
 }
 </style>

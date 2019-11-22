@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev": "vue-cli-service build --watch --mode development",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --mode production",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "core-js": "^3.3.2",
+    "mockjs": "^1.1.0",
+    "qs": "^6.9.1",
     "vue": "^2.6.10",
     "vue-particles": "^1.0.9",
     "vue-router": "^3.1.3",

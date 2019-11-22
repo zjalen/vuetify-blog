@@ -3,14 +3,7 @@
     <top-header class="header"></top-header>
     <v-content class="content">
       <!-- Provides the application the proper gutter -->
-      <v-layout row wrap justify-center align-center>
-            <v-flex xs12 sm12 md8 lg8>
-                <v-layout justify-center wrap >
-                  <!-- If using vue-router -->
-                  <router-view></router-view>
-                </v-layout>
-            </v-flex>
-      </v-layout>
+      <router-view></router-view>
     </v-content>
     <bottom-footer class="footer"></bottom-footer>
   </v-app>

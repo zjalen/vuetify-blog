@@ -2,34 +2,35 @@
     <v-container>
       <v-row dense>
         <v-col
-          v-for="(item, i) in items"
+          v-for="(article, i) in articles"
           :key="i"
           cols="12"
         >
           <v-card
-            :color="$vuetify.theme.currentTheme.secondary.lighten3"
+            color="primary"
             outlined
             hover
           >
-            <div class="d-flex flex-no-wrap">
+            <div class="d-flex flex-column flex-sm-row">
               <v-avatar
                 class="ma-3"
-                size="175"
+                :size="imageHeight"
+                height="175px"
                 tile
               >
-                <v-img :src="item.src"></v-img>
+                <v-img :src="article.cover"></v-img>
               </v-avatar>
 
               <v-row dense>
                 <v-col :cols="12">
                     <v-card-title
                       class="headline"
-                      v-text="item.title"
-                    ></v-card-title>
+                      v-text="article.title"
+                    ><span class="is_top" v-if="article.is_top">「置顶」</span></v-card-title>
 
-                    <v-card-subtitle v-text="item.artist"></v-card-subtitle>
+                    <v-card-subtitle v-text="article.description"></v-card-subtitle>
                     <v-card-text class="text--primary">
-                      <div>Whitehaven Beach</div>
+                      <div>{{ article.created_at }}</div>
                     </v-card-text>
 
                     <v-card-actions>
@@ -39,15 +40,16 @@
                         color="secondary"
                         outlined
                       >
-                        <v-icon left>mdi-pencil</v-icon> 分类
+                        <v-icon left>mdi-pencil</v-icon> 分类：{{ article.category.name }}
                       </v-btn>
                       <v-spacer></v-spacer>
                       <v-btn
                         class="ma-2"
                         color="secondary accent-4"
                         outlined
+                        v-if="article.topic"
                       >
-                        <v-icon left>mdi-pencil</v-icon> 系列
+                        <v-icon left>mdi-pencil</v-icon> 主题：{{article.topic.name}}
                       </v-btn>
                       
                     </v-card-actions>
@@ -60,22 +62,30 @@
     </v-container>
 </template>
 <script>
-  export default {
-    data: () => ({
-      items: [
-        {
-          color: '#1F7087',
-          src: 'https://cdn.vuetifyjs.com/images/cards/foster.jpg',
-          title: 'Supermodel',
-          artist: 'Foster the People',
-        },
-        {
-          color: '#952175',
-          src: 'https://cdn.vuetifyjs.com/images/cards/halcyon.png',
-          title: 'Halcyon Days',
-          artist: 'Ellie Goulding',
-        },
-      ],
-    }),
+import { getArticles } from '../api'
+export default {
+  data: () => ({
+    items: [],
+    articles: [],
+  }),
+  mounted() {
+    this.init();
+  },
+  computed: {
+    imageHeight () {
+      switch (this.$vuetify.breakpoint.name) {
+        case 'xs': return 'auto'
+      }
+      return '175'
+    },
+  },
+  methods: {
+    init() {
+      getArticles().then(response => {
+        console.log(response);
+        this.articles = response.data.articles;
+      })
+    }
   }
+}
 </script>

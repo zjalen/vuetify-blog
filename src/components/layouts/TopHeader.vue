@@ -9,9 +9,9 @@
             :particleOpacity="0.5"
             :particlesNumber="88"
             shapeType="circle"
-            :particleSize="2"
+            :particleSize="1"
             linesColor="#33b1f8"
-            :linesWidth="2"
+            :linesWidth="1"
             :lineLinked="true"
             :lineOpacity="0.3"
             :linesDistance="150"
@@ -22,39 +22,35 @@
             clickMode="push"
         >
         </vue-particles>
-        <v-layout row wrap justify-center>
-            <v-flex xs12 sm12 md8 lg8>
-                <v-layout justify-center wrap >
+        <v-container class="px-md-3 px-0">
+            <v-layout justify-center wrap >
                 <v-flex column wrap >
                     <div class="blog-title">{{ title }}</div>
-                    <div class="slogan d-none d-lg-block" v-html="slogan"></div>
+                    <div class="slogan d-none d-sm-block" v-html="slogan"></div>
                 </v-flex>
                 <v-spacer></v-spacer>
                 <v-btn icon>
                     <v-icon>mdi-heart</v-icon>
                 </v-btn>
-                </v-layout>
-            </v-flex>
-        </v-layout>
+            </v-layout>
+        </v-container>
 
         <template v-slot:extension>
-            <v-layout justify-center row wrap >
-                <v-flex xs12 sm12 md8 lg8>
-                    <v-tabs
-                        v-model="tab"
-                        align-with-title
-                        background-color="secondary"
-                        @change="onTabChange"
-                        show-arrows
-                    >
-                        <v-tabs-slider color="tertiary"></v-tabs-slider>
+            <v-container class="px-md-3 px-0">
+                <v-tabs
+                    v-model="tab"
+                    align-with-title
+                    background-color="secondary"
+                    @change="onTabChange"
+                    show-arrows
+                >
+                    <v-tabs-slider color="tertiary"></v-tabs-slider>
 
-                        <v-tab v-for="(item,index) in menus" :key="index">
-                        {{ item.name }}
-                        </v-tab>
-                    </v-tabs>
-                </v-flex>
-            </v-layout>
+                    <v-tab v-for="(item,index) in menus" :key="index">
+                    {{ item.name }}
+                    </v-tab>
+                </v-tabs>
+            </v-container>
         </template>
     </v-app-bar>
 </template>
@@ -108,5 +104,8 @@ export default {
     bottom: 0;
     z-index: -1;
     height: 248px;
+}
+.v-toolbar__extension {
+    padding: 0 !important;
 }
 </style>

@@ -4,6 +4,12 @@ import vuetify from './plugins/vuetify'
 import router from './router'
 import store from './store'
 
+import { mockXHR } from './mock'
+// 通过环境变量来判断是否需要加载启用 mockjs
+if (process.env.NODE_ENV === 'development') {
+  mockXHR()
+}
+
 Vue.config.productionTip = false
 
 new Vue({
