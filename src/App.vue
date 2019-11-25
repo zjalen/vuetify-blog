@@ -5,6 +5,9 @@
       <main-content></main-content>
     </v-content>
     <bottom-footer class="footer"></bottom-footer>
+    <v-overlay :value="loading">
+      <v-progress-circular indeterminate size="64"></v-progress-circular>
+    </v-overlay>
   </v-app>
 </template>
 
@@ -34,6 +37,18 @@ export default {
     text:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   }),
+  computed: {
+    loading() {
+      return this.$store.state.loading;
+    }
+  },
+  watch: {
+    loading (val) {
+      val && setTimeout(() => {
+        this.$store.commit('setLoading', false);
+      }, 5000)
+    },
+  },
   methods: {
     onTabChange(item) {
       console.log(item);
@@ -42,17 +57,6 @@ export default {
 };
 </script>
 <style>
-code {
-  border: 1px solid #ddd;
-  background: #f6f6f6;
-  padding: 3px;
-  border-radius: 3px;
-  font-size: 14px;
-  margin-left: 5px;
-  margin-right: 4px;
-  color: #c7254e;
-  line-height: 16px;
-}
 .header {
   height: 168px;
   background-color: rgba(0,0,0,0) !important;

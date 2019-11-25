@@ -40,14 +40,14 @@
                 <v-tabs
                     v-model="tab"
                     align-with-title
-                    :background-color="$vuetify.theme.currentTheme.secondary.lighten3"
+                    :background-color="$vuetify.theme.currentTheme.secondary.lighten1"
                     @change="onTabChange"
                     show-arrows
                 >
-                    <v-tabs-slider color="tertiary"></v-tabs-slider>
+                    <v-tabs-slider color="primary"></v-tabs-slider>
 
-                    <v-tab v-for="(item,index) in menus" :key="index">
-                    {{ item.name }}
+                    <v-tab v-for="(menu,index) in menus" :key="index">
+                    {{ menu.name }}
                     </v-tab>
                 </v-tabs>
             </v-container>
@@ -87,7 +87,27 @@ export default {
     },
     methods: {
         onTabChange(index) {
-            console.log(index)
+            console.log(index);
+            let menu = this.menus[index];
+            if (menu.url === 'about' || menu.url === 'link') {
+                this.$router.push({path: menu.url});
+                return
+            }
+            if (this.$route.params.cate !== menu.id) {
+                let rt = {};
+                if (menu.id === 0) {
+                    rt['name'] = 'index';
+                    rt['params'] = {};
+                    rt['params']['cate'] = menu.id;
+                    rt['params']['page'] = 1;
+                } else {
+                    rt['name'] = 'cate';
+                    rt['params'] = {};
+                    rt['params']['cate'] = menu.id;
+                    rt['params']['page'] = 1;
+                }
+                this.$router.push(rt);
+            }
         }
     }
 }
@@ -95,10 +115,10 @@ export default {
 <style scoped lang=sass>
 .blog-title {
   font-size: 30px;
-  color: var(--v-tertiary-lighten1);
+  color: var(--v-primary-base);
 }
 .slogan {
-    color: var(--v-tertiary-lighten1);
+    color: var(--v-primary-lighten3);
 }
 #particles-js {
     position: absolute;

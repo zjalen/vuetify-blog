@@ -41,7 +41,7 @@ service.interceptors.response.use(
   },
   error => {
     console.log('err' + error) // for debug
-    store.commit('setLoading', false)
+    // store.commit('setLoading', false)
     return Promise.reject(error)
   }
 )
