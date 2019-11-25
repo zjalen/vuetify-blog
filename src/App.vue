@@ -2,8 +2,7 @@
   <v-app>
     <top-header class="header"></top-header>
     <v-content class="content">
-      <!-- Provides the application the proper gutter -->
-      <router-view></router-view>
+      <main-content></main-content>
     </v-content>
     <bottom-footer class="footer"></bottom-footer>
   </v-app>
@@ -12,12 +11,14 @@
 <script>
 // import HelloWorld from './components/HelloWorld';
 import TopHeader from "./components/layouts/TopHeader";
+import MainContent from "./components/layouts/MainContent";
 import BottomFooter from "./components/layouts/BottomFooter";
 export default {
   name: "App",
 
   components: {
     TopHeader,
+    MainContent,
     BottomFooter
   },
 

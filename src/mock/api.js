@@ -1,7 +1,7 @@
 import Mock from 'mockjs'
 
 const List = []
-const count = 100
+const count = 202
 
 const baseContent = '<p>I am testing data, I am testing data.</p><p><img src="https://wpimg.wallstcn.com/4c69009c-0fd4-4153-b112-6cb53d1cf943"></p>'
 const image_uri = 'https://wpimg.wallstcn.com/e4558086-631c-425c-9430-56ffb46e70b3'
@@ -29,7 +29,7 @@ for (let i = 0; i < count; i++) {
     category_id: 5,
     cover: image_uri,
     created_at: '@datetime',
-    description: 'mock data',
+    description: '@title(10,120)',
     id: '@increment',
     is_top: false,
     title: '@title(5, 10)',
@@ -37,6 +37,51 @@ for (let i = 0; i < count; i++) {
     topic_id: null,
   }))
 }
+
+const Menus = [
+  {
+      id: 0,
+      name: '首页',
+      url: '',
+      children: [],
+  },
+  {
+    id: 1,
+    name: '前端',
+    url: '',
+    children: [],
+  },
+  {
+    id: 2,
+    name: 'PHP',
+    url: '',
+    children: [],
+  },
+  {
+    id: 3,
+    name: 'IOS',
+    url: '',
+    children: [],
+  },
+  {
+    id: 4,
+    name: 'Android',
+    url: '',
+    children: [],
+  },
+  {
+    id: 5,
+    name: '系统相关',
+    url: '',
+    children: [],
+  },
+  {
+    id: 6,
+    name: '杂谈',
+    url: '',
+    children: [],
+  },
+];
 
 export default [
     {
@@ -67,6 +112,18 @@ export default [
             tag_name: "",
             topic_name: "",
           }
+        }
+      }
+    },
+
+    {
+      url: '/menus',
+      type: 'get',
+      response: () => {
+  
+        return {
+          code: 200,
+          data: Menus
         }
       }
     },

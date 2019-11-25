@@ -22,7 +22,7 @@
             clickMode="push"
         >
         </vue-particles>
-        <v-container class="px-md-3 px-0">
+        <v-container class="px-0 px-md-3" style="max-width: 1185px;">
             <v-layout justify-center wrap >
                 <v-flex column wrap >
                     <div class="blog-title">{{ title }}</div>
@@ -36,11 +36,11 @@
         </v-container>
 
         <template v-slot:extension>
-            <v-container class="px-md-3 px-0">
+            <v-container class="px-0 px-md-3" style="max-width: 1185px;">
                 <v-tabs
                     v-model="tab"
                     align-with-title
-                    background-color="secondary"
+                    :background-color="$vuetify.theme.currentTheme.secondary.lighten3"
                     @change="onTabChange"
                     show-arrows
                 >
@@ -58,6 +58,8 @@
 import Vue from 'vue'
 import VueParticles from 'vue-particles'  
 Vue.use(VueParticles)
+import { getMenus } from '../../api'
+
 export default {
     components: {
         
@@ -79,6 +81,9 @@ export default {
     },
     mounted() {
         console.log(this.$vuetify.theme.currentTheme);
+        getMenus().then(response => {
+            this.menus = response.data
+        })
     },
     methods: {
         onTabChange(index) {
@@ -97,7 +102,7 @@ export default {
 }
 #particles-js {
     position: absolute;
-    background-color: var(--v-secondary-darken3);
+    background-color: var(--v-secondary-base);
     left: 0;
     right: 0;
     top: -80px;
