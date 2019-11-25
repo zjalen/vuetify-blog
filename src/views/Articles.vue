@@ -1,7 +1,7 @@
 <template>
   <v-row dense>
     <v-col cols="12">
-      <v-breadcrumbs :items="breadcrumbs" class="pa-0"></v-breadcrumbs>
+      <v-breadcrumbs v-if="breadcrumbs_show" :items="breadcrumbs" class="pa-0"></v-breadcrumbs>
     </v-col>
     <v-col v-for="(article, i) in articles" :key="i" cols="12">
       <v-card outlined hover>
@@ -55,9 +55,9 @@ export default {
     items: [],
     breadcrumbs: [
       {
-        disabled: true,
-        href: '',
-        link: false,
+        disabled: false,
+        href: '/',
+        link: true,
         text: "首页",
       }
     ],
@@ -65,9 +65,26 @@ export default {
     current_page: 1,
     page_count: 1,
     per_page_count: 10,
+    breadcrumbs_show: false,
+    topic_show: false,
+    tag_show: false,
   }),
   mounted() {
-    this.current_page = this.$route.params.page ? this.$route.params.page : 1;
+    if (this.$route.params.cate) {
+      let breadcrumb_name = null;
+      this.$store.state.menus.filter((menu) => {
+        if (menu.id === Number(this.$route.params.cate)) {
+          breadcrumb_name = menu.name;
+        }
+      })
+      this.breadcrumbs.push({
+        disabled: true,
+        href: '/cate/' + this.$route.params.cate,
+        link: true,
+        text: breadcrumb_name
+      })
+    }
+    this.current_page = this.$route.params.page ? Number(this.$route.params.page) : 1;
     this.init();
   },
   computed: {
@@ -81,7 +98,13 @@ export default {
   },
   methods: {
     init() {
+      this.breadcrumbs_show = !!this.$route.params.cate;
+      this.topic_show = !!this.$route.params.topic;
+      this.tag_show = !!this.$route.params.tag;
       let params = {
+        menu_id : this.$route.params.cate,
+        topic_id: this.$route.params.topic,
+        tag_id: this.$route.params.tag,
         limit: this.per_page_count,
         skip: (this.current_page - 1) * this.per_page_count
       };
@@ -92,7 +115,11 @@ export default {
       });
     },
     onPageChange(page) {
-      console.log(page)
+      let rt = {};
+      rt['name'] = this.$route.name === '/' ? 'index' : this.$route.name;
+      rt['params'] = {};
+      rt['params']['page'] = page;
+      this.$router.push(rt);
     }
   }
 };

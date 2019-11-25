@@ -8,6 +8,7 @@ export default new Vuex.Store({
         // 这里放全局参数
         mounting: false,
         loading: false,
+        menus: [],
     },
 
     mutations: {
@@ -17,6 +18,9 @@ export default new Vuex.Store({
         },
         setLoading(state, status) {
             state.loading = status
+        },
+        setMenus(state, menus) {
+            state.menus = menus
         }
     },
 
@@ -24,6 +28,7 @@ export default new Vuex.Store({
         // 这里是get方法
         mounting: state => state.app.mounting,
         loading: state => state.app.loading,
+        menus: state => state.app.menus,
     },
 
     actions: {
@@ -33,6 +38,9 @@ export default new Vuex.Store({
         },
         actionSetLoading({ commit }, status) {
             commit('setLoading', status)
+        },
+        actionSetMenus({ commit }, menus) {
+            commit('setMenus', menus)
         },
     },
 

@@ -46,7 +46,7 @@
                 >
                     <v-tabs-slider color="primary"></v-tabs-slider>
 
-                    <v-tab v-for="(menu,index) in menus" :key="index">
+                    <v-tab v-for="(menu,index) in $store.state.menus" :key="index">
                     {{ menu.name }}
                     </v-tab>
                 </v-tabs>
@@ -68,27 +68,32 @@ export default {
         return {
             title: 'JALEN博客',
             slogan: "他沉默，什么都不说，随手写下一行 <code>Hello,World!</code>",
-            menus: [
-                {
-                    id: 0,
-                    name: '首页',
-                    url: '',
-                    children: [],
-                }
-            ],
             tab: null
         }
     },
     mounted() {
         console.log(this.$vuetify.theme.currentTheme);
         getMenus().then(response => {
-            this.menus = response.data
+            let menus = response.data;
+            this.$store.commit('setMenus', menus);
         })
     },
     methods: {
         onTabChange(index) {
-            console.log(index);
-            let menu = this.menus[index];
+            // console.log(index);
+            if (!this.$route.params.cate && index === 0) {
+                return
+            }
+            if (Number(this.$route.params.cate) === index) {
+                return
+            }
+            let menus = this.$store.state.menus;
+            let menu = null;
+            menus.filter((item) => {
+                if (item.id === index) {
+                    menu = item;
+                }
+            });
             if (menu.url === 'about' || menu.url === 'link') {
                 this.$router.push({path: menu.url});
                 return
