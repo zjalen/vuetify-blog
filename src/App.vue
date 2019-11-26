@@ -50,9 +50,6 @@ export default {
     },
   },
   methods: {
-    onTabChange(item) {
-      console.log(item);
-    }
   }
 };
 </script>

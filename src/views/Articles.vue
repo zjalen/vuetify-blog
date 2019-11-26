@@ -1,7 +1,19 @@
 <template>
   <v-row dense>
-    <v-col cols="12">
-      <v-breadcrumbs v-if="breadcrumbs_show" :items="breadcrumbs" class="pa-0"></v-breadcrumbs>
+    <v-col v-if="breadcrumbs_show" cols="12">
+      <v-breadcrumbs :items="breadcrumbs" class="pa-0"></v-breadcrumbs>
+    </v-col>
+    <v-col v-if="filters.topic || filters.tag" cols="12" class="pb-3">
+      <v-btn v-if="filters.topic" outlined color="tertiary" @click="$router.push({name: 'index'})">
+        <v-icon left>mdi-file-document-box-multiple-outline</v-icon>
+          {{filters.topic}}
+        <v-icon right>mdi-close</v-icon>
+      </v-btn>
+      <v-btn v-if="filters.tag" outlined color="tertiary" @click="$router.push({name: 'index'})">
+        <v-icon left>mdi-file-document-box-multiple-outline</v-icon>
+          {{filters.tag}}
+        <v-icon right>mdi-close</v-icon>
+      </v-btn>
     </v-col>
     <v-col v-for="(article, i) in articles" :key="i" cols="12">
       <v-card outlined hover>
@@ -12,8 +24,8 @@
 
           <v-row dense>
             <v-col :cols="12">
-              <v-card-title class="headline" v-text="article.title">
-                <span class="is_top" v-if="article.is_top">「置顶」</span>
+              <v-card-title class="headline">
+                <v-icon color="error">mdi-arrow-up-bold-circle-outline</v-icon>{{article.title}}
               </v-card-title>
 
               <v-card-subtitle v-text="article.description"></v-card-subtitle>
@@ -22,13 +34,13 @@
               </v-card-text>
 
               <v-card-actions>
-                <v-btn class="ma-2" color="secondary" outlined>
-                  <v-icon left>mdi-pencil</v-icon>
+                <v-btn class="ma-2" color="secondary" outlined @click="onCateClick(article.category_id)">
+                  <v-icon left>mdi-menu</v-icon>
                   分类：{{ article.category.name }}
                 </v-btn>
                 <v-spacer></v-spacer>
-                <v-btn class="ma-2" color="secondary accent-4" outlined v-if="article.topic">
-                  <v-icon left>mdi-pencil</v-icon>
+                <v-btn class="ma-2" color="tertiary" outlined v-if="article.topic" @click="onTopicClick(article.topic.name)">
+                  <v-icon left>mdi-file-document-box-multiple-outline</v-icon>
                   主题：{{article.topic.name}}
                 </v-btn>
               </v-card-actions>
@@ -64,10 +76,14 @@ export default {
     articles: [],
     current_page: 1,
     page_count: 1,
-    per_page_count: 10,
+    per_page_count: 20,
     breadcrumbs_show: false,
     topic_show: false,
     tag_show: false,
+    filters: {
+      topic: null,
+      tag: null,
+    }
   }),
   mounted() {
     if (this.$route.params.cate) {
@@ -99,12 +115,12 @@ export default {
   methods: {
     init() {
       this.breadcrumbs_show = !!this.$route.params.cate;
-      this.topic_show = !!this.$route.params.topic;
-      this.tag_show = !!this.$route.params.tag;
+      this.filters.topic = this.$route.query.topic;
+      this.filters.tag= this.$route.query.tag;
       let params = {
         menu_id : this.$route.params.cate,
-        topic_id: this.$route.params.topic,
-        tag_id: this.$route.params.tag,
+        topic_name: this.$route.query.topic,
+        tag_name: this.$route.query.tag,
         limit: this.per_page_count,
         skip: (this.current_page - 1) * this.per_page_count
       };
@@ -119,6 +135,26 @@ export default {
       rt['name'] = this.$route.name === '/' ? 'index' : this.$route.name;
       rt['params'] = {};
       rt['params']['page'] = page;
+      this.$router.push(rt);
+    },
+    onCateClick(category_id) {
+      if (Number(this.$route.params.cate) === category_id) {
+          return
+      }
+      let rt = {};
+      rt['name'] = 'cate';
+      rt['params'] = {};
+      rt['params']['cate'] = category_id;
+      rt['params']['page'] = 1;
+      this.$router.push(rt);
+    },
+    onTopicClick(topic_name) {
+      let rt = {
+        name: 'index',
+        query: {
+          topic: topic_name
+        }
+      };
       this.$router.push(rt);
     }
   }

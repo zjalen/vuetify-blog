@@ -31,10 +31,11 @@ for (let i = 0; i < count; i++) {
     created_at: '@datetime',
     description: '@title(10,120)',
     id: '@increment',
-    is_top: false,
+    is_top: true,
     title: '@title(5, 10)',
-    topic: null,
-    topic_id: null,
+    topic: {id: 3, name: "Vuetify 入门教程"},
+    topic_id: 3,
+    tags: ['前端', 'vue', 'js']
   }))
 }
 
@@ -88,12 +89,15 @@ export default [
       url: '/articles',
       type: 'get',
       response: config => {
-        const { importance, type, title, page = 1, limit = 20, sort } = config.query
+        const { importance, type, title, page = 1, limit = 20, sort, tag_name, topic_name } = config.query
+        console.log(config);
   
         let mockList = List.filter(item => {
           if (importance && item.importance !== +importance) return false
           if (type && item.type !== type) return false
           if (title && item.title.indexOf(title) < 0) return false
+          if (topic_name && item.topic.name !== topic_name) return false
+          if (tag_name && item.tags.indexOf(tag_name)) return false
           return true
         })
   

@@ -68,15 +68,24 @@ export default {
         return {
             title: 'JALEN博客',
             slogan: "他沉默，什么都不说，随手写下一行 <code>Hello,World!</code>",
-            tab: null
         }
     },
     mounted() {
-        console.log(this.$vuetify.theme.currentTheme);
         getMenus().then(response => {
             let menus = response.data;
             this.$store.commit('setMenus', menus);
         })
+    },
+    computed: {
+        tab: {
+            get () {
+                let current_menu = this.$route.params.cate ? Number(this.$route.params.cate) : 0;
+                return current_menu;
+            },
+            set () {
+
+            }
+        }
     },
     methods: {
         onTabChange(index) {
