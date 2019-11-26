@@ -1,5 +1,5 @@
 import axios from 'axios'
-import store from '../store'
+// import store from '../store'
 
 // create an axios instance
 const service = axios.create({
@@ -12,7 +12,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // do something before request is sent
-    store.commit('setLoading', true)
+    // store.commit('setLoading', true)
     return config
   },
   error => {
@@ -36,7 +36,7 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-    store.commit('setLoading', false)
+    // store.commit('setLoading', false)
     return res;
   },
   error => {

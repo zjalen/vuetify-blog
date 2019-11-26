@@ -16,45 +16,59 @@
       </v-btn>
     </v-col>
     <v-col v-for="(article, i) in articles" :key="i" cols="12">
-      <v-card outlined hover>
-        <div class="d-flex flex-column flex-sm-row">
-          <v-avatar class="ma-3" :size="imageHeight" height="175px" tile>
-            <v-img :src="article.cover"></v-img>
-          </v-avatar>
+      <v-skeleton-loader
+        ref="skeleton"
+        height="200"
+        :loading="loading"
+        type="article, actions"
+        class="mx-auto"
+      >
+        <v-card outlined hover>
+          <div class="d-flex flex-column flex-sm-row">
+            <v-avatar class="ma-3" :size="imageHeight" height="175px" tile>
+              <v-img :src="article.cover"></v-img>
+            </v-avatar>
 
-          <v-row dense>
-            <v-col :cols="12">
-              <v-card-title class="headline">
-                <v-icon color="error">mdi-arrow-up-bold-circle-outline</v-icon>{{article.title}}
-              </v-card-title>
+            <v-row dense>
+              <v-col :cols="12">
+                <v-card-title class="headline">
+                  <v-icon color="error">mdi-arrow-up-bold-circle-outline</v-icon>{{article.title}}
+                </v-card-title>
 
-              <v-card-subtitle v-text="article.description"></v-card-subtitle>
-              <v-card-text class="text--primary">
-                <div>{{ article.created_at }}</div>
-              </v-card-text>
+                <v-card-subtitle v-text="article.description"></v-card-subtitle>
+                <v-card-text class="text--primary">
+                  <div>{{ article.created_at }}</div>
+                </v-card-text>
 
-              <v-card-actions>
-                <v-btn class="ma-2" color="secondary" outlined @click="onCateClick(article.category_id)">
-                  <v-icon left>mdi-menu</v-icon>
-                  分类：{{ article.category.name }}
-                </v-btn>
-                <v-spacer></v-spacer>
-                <v-btn class="ma-2" color="tertiary" outlined v-if="article.topic" @click="onTopicClick(article.topic.name)">
-                  <v-icon left>mdi-file-document-box-multiple-outline</v-icon>
-                  主题：{{article.topic.name}}
-                </v-btn>
-              </v-card-actions>
-            </v-col>
-          </v-row>
-        </div>
-      </v-card>
+                <v-card-actions>
+                  <v-btn class="ma-2" color="secondary" outlined @click="onCateClick(article.category_id)">
+                    <v-icon left>mdi-menu</v-icon>
+                    分类：{{ article.category.name }}
+                  </v-btn>
+                  <v-spacer></v-spacer>
+                  <v-btn class="ma-2" color="tertiary" outlined v-if="article.topic" @click="onTopicClick(article.topic.name)">
+                    <v-icon left>mdi-file-document-box-multiple-outline</v-icon>
+                    主题：{{article.topic.name}}
+                  </v-btn>
+                </v-card-actions>
+              </v-col>
+            </v-row>
+          </div>
+        </v-card>
+      </v-skeleton-loader>
     </v-col>
 
     <v-col cols="12">
+      <v-card v-if="articles.length < 1" outlined>
+        <v-card-title class="headline">
+          没找到相关文章，请您查阅其他内容。
+        </v-card-title>
+      </v-card>
       <v-pagination
         v-model="current_page"
         :length="page_count"
         total-visible="10"
+        v-if="articles.length > 1" 
         @input="onPageChange"
       ></v-pagination>
     </v-col>
@@ -73,10 +87,22 @@ export default {
         text: "首页",
       }
     ],
-    articles: [],
+    loading: true,
+    articles: [{
+      category: {id: null, name: ""},
+      category_id: null,
+      cover: '',
+      created_at: '',
+      description: '',
+      id: '',
+      is_top: false,
+      title: '',
+      topic: {id: null, name: ""},
+      topic_id: null,
+    }],
     current_page: 1,
-    page_count: 1,
-    per_page_count: 20,
+    page_count: 0,
+    per_page_count: 10,
     breadcrumbs_show: false,
     topic_show: false,
     tag_show: false,
@@ -126,8 +152,13 @@ export default {
       };
       getArticles(params).then(response => {
         console.log(response);
-        this.articles = response.data.articles;
-        this.page_count = Math.ceil(response.data.count / this.per_page_count);
+        setTimeout(()=> {
+          this.loading = false;
+          this.articles = response.data.articles;
+          if (this.articles.length > 0) {
+            this.page_count = Math.ceil(response.data.count / this.per_page_count);
+          }
+        },800);
       });
     },
     onPageChange(page) {

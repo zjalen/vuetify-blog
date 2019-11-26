@@ -90,7 +90,6 @@ export default [
       type: 'get',
       response: config => {
         const { importance, type, title, page = 1, limit = 20, sort, tag_name, topic_name } = config.query
-        console.log(config);
   
         let mockList = List.filter(item => {
           if (importance && item.importance !== +importance) return false

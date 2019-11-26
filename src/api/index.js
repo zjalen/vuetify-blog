@@ -16,7 +16,6 @@ export function getMenus() {
  * @param params
  */
 export function getArticles(params) {
-  console.log(qs.stringify(params));
   return request({
     url: '/articles?&' + qs.stringify(params),
     method: 'get',
