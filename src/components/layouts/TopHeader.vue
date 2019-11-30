@@ -22,7 +22,7 @@
             clickMode="push"
         >
         </vue-particles>
-        <v-container class="px-0 px-md-3" style="max-width: 1185px;">
+        <v-container style="max-width: 1185px;">
             <v-layout justify-center wrap >
                 <v-flex column wrap >
                     <div class="blog-title">{{ title }}</div>
@@ -36,7 +36,7 @@
         </v-container>
 
         <template v-slot:extension>
-            <v-container class="px-0 px-md-3" style="max-width: 1185px;">
+            <v-container style="max-width: 1185px;">
                 <v-tabs
                     v-model="tab"
                     align-with-title

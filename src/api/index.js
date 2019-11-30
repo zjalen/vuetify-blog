@@ -21,3 +21,14 @@ export function getArticles(params) {
     method: 'get',
   })
 }
+
+/**
+ * 获取文章详情
+ * @param id
+ */
+export function getArticle(id) {
+  return request({
+    url: '/api/getArticle?id=' + id,
+    method: 'get',
+  })
+}

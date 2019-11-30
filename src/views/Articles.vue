@@ -4,13 +4,13 @@
       <v-breadcrumbs :items="breadcrumbs" class="pa-0"></v-breadcrumbs>
     </v-col>
     <v-col v-if="filters.topic || filters.tag" cols="12" class="pb-3">
-      <v-btn v-if="filters.topic" outlined color="tertiary" @click="$router.push({name: 'index'})">
+      <v-btn small class="mr-3" v-if="filters.topic" outlined color="tertiary" @click="$router.push({name: '/'})">
         <v-icon left>mdi-file-document-box-multiple-outline</v-icon>
           {{filters.topic}}
         <v-icon right>mdi-close</v-icon>
       </v-btn>
-      <v-btn v-if="filters.tag" outlined color="tertiary" @click="$router.push({name: 'index'})">
-        <v-icon left>mdi-file-document-box-multiple-outline</v-icon>
+      <v-btn small v-if="filters.tag" outlined color="info" @click="$router.push({name: '/'})">
+        <v-icon left>mdi-tag-outline</v-icon>
           {{filters.tag}}
         <v-icon right>mdi-close</v-icon>
       </v-btn>
@@ -23,7 +23,7 @@
         type="article, actions"
         class="mx-auto"
       >
-        <v-card outlined hover>
+        <v-card outlined hover @click="toArticle(article.category_id, article.id)">
           <div class="d-flex flex-column flex-sm-row">
             <v-avatar class="ma-3" :size="imageHeight" height="175px" tile>
               <v-img :src="article.cover"></v-img>
@@ -31,22 +31,22 @@
 
             <v-row dense>
               <v-col :cols="12">
-                <v-card-title class="headline">
-                  <v-icon color="error">mdi-arrow-up-bold-circle-outline</v-icon>{{article.title}}
-                </v-card-title>
+                <div class="headline px-4">
+                  <span class="error--text">[TOP] </span>{{article.title}}
+                </div>
 
                 <v-card-subtitle v-text="article.description"></v-card-subtitle>
                 <v-card-text class="text--primary">
-                  <div>{{ article.created_at }}</div>
+                  <div class="d-flex flex-row"><v-icon class="body-2" left>mdi-clock-outline</v-icon>{{ article.created_at }}</div>
                 </v-card-text>
 
-                <v-card-actions>
-                  <v-btn class="ma-2" color="secondary" outlined @click="onCateClick(article.category_id)">
+                <v-card-actions class="d-flex flex-sm-row flex-column-reverse align-start">
+                  <v-btn small class="ma-2" color="secondary" outlined @click="onCateClick(article.category_id)">
                     <v-icon left>mdi-menu</v-icon>
                     分类：{{ article.category.name }}
                   </v-btn>
                   <v-spacer></v-spacer>
-                  <v-btn class="ma-2" color="tertiary" outlined v-if="article.topic" @click="onTopicClick(article.topic.name)">
+                  <v-btn small class="ma-2" color="tertiary" outlined v-if="article.topic" @click="onTopicClick(article.topic.name)">
                     <v-icon left>mdi-file-document-box-multiple-outline</v-icon>
                     主题：{{article.topic.name}}
                   </v-btn>
@@ -68,7 +68,7 @@
         v-model="current_page"
         :length="page_count"
         total-visible="10"
-        v-if="articles.length > 1" 
+        v-if="articles.length > 1"
         @input="onPageChange"
       ></v-pagination>
     </v-col>
@@ -158,7 +158,7 @@ export default {
           if (this.articles.length > 0) {
             this.page_count = Math.ceil(response.data.count / this.per_page_count);
           }
-        },800);
+        },500);
       });
     },
     onPageChange(page) {
@@ -181,12 +181,18 @@ export default {
     },
     onTopicClick(topic_name) {
       let rt = {
-        name: 'index',
+        name: '/',
         query: {
           topic: topic_name
         }
       };
       this.$router.push(rt);
+    },
+    toArticle(cate_id, article_id) {
+        this.$router.push({
+          name: 'article',
+          params: { cate: cate_id, id: article_id }
+        })
     }
   }
 };

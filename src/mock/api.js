@@ -29,10 +29,10 @@ for (let i = 0; i < count; i++) {
     category_id: 5,
     cover: image_uri,
     created_at: '@datetime',
-    description: '@title(10,120)',
+    description: '@content(10,50)',
     id: '@increment',
     is_top: true,
-    title: '@title(5, 10)',
+    title: '这是一段中文文字，测试长度与标题',
     topic: {id: 3, name: "Vuetify 入门教程"},
     topic_id: 3,
     tags: ['前端', 'vue', 'js']
