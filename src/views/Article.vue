@@ -8,12 +8,13 @@
                 <div class="text-right font-weight-light body-1 pt-3 pr-3">
                     <v-icon left>mdi-clock-outline</v-icon>{{article.created_at}}
                 </div>
-                <v-col v-if="article.topic || article.category" cols="12" class="d-flex justify-space-between">
-                    <v-btn small v-if="article.topic" outlined color="tertiary" @click="onTopicClick(article.topic.name)">
+                <v-col v-if="article.topic || article.category" cols="12" class="d-flex flex-sm-row flex-column-reverse">
+                    <v-btn small v-if="article.topic" class="mb-2" outlined color="tertiary" @click="onTopicClick(article.topic.name)">
                         <v-icon left>mdi-file-document-box-multiple-outline</v-icon>
                         主题：{{article.topic.name}}
                     </v-btn>
-                    <v-btn small v-if="article.category" outlined color="secondary" @click="$router.push({name: 'cate', params: {id: article.category.id}})">
+                    <v-spacer></v-spacer>
+                    <v-btn small v-if="article.category" class="mb-2" outlined color="secondary" @click="$router.push({name: 'cate', params: {id: article.category.id}})">
                         <v-icon left>mdi-file-document-box-multiple-outline</v-icon>
                         分类：{{article.category.name}}
                     </v-btn>
@@ -63,29 +64,28 @@
                 </div>
             </v-card>
         </v-col>
+        <my-image-viewer :showImg="showImgView" @hideImg="hideImg" :imgSrc="imgSrc"></my-image-viewer>
     </v-row>
 </template>
 
 <script>
-import hljs from 'highlight.js' //导入代码高亮文件
+// import hljs from 'highlight.js' //导入代码高亮文件
 import 'highlight.js/styles/androidstudio.css'  //导入代码高亮样式
 // import { mavonEditor } from 'mavon-editor'
 // import 'mavon-editor/dist/css/index.css'
-// import article from '../assets/article.js'
+
 import { getArticle } from '../api'
-// import Vue from "vue";
-// import vueHljs from "vue-hljs";
-// //if you want to use default color, import this css file
-// import "vue-hljs/dist/vue-hljs.min.css";
-// //use
-// Vue.use(vueHljs)
+
 // import MyMarkDown from '../components/MyMarkDown';
-import 'vuetify-markdown-editor/dist/vuetify-markdown-editor.css';
+// import 'vuetify-markdown-editor/dist/vuetify-markdown-editor.css';
+import '../scss/custom.scss';
+import MyImageViewer from '../components/MyImageViewer'
 
 export default {
     components: {
         // mavonEditor
         // MyMarkDown
+        MyImageViewer
     },
     data() {
         return {
@@ -114,8 +114,10 @@ export default {
                 },
                 next: {
                     title: '',
-                }
-            }
+                },
+            },
+            imgSrc: null,
+            showImgView: false,
         }
     },
     mounted() {
@@ -131,7 +133,7 @@ export default {
                     blocks.forEach((block) => {
                         block.innerHTML = block.innerHTML.slice(0,-1)
                     });
-                    hljs.initHighlightingOnLoad();
+                    this.addImgClickEvent();
                 });
             })
         },
@@ -160,6 +162,18 @@ export default {
         },
         toArticle(article) {
             console.log(article)
+        },
+        hideImg() {
+            this.showImgView = false;
+        },
+        addImgClickEvent(){
+            let objs = document.getElementsByTagName("img");
+            objs.forEach(obj => {
+                obj.onclick = ()=>{
+                    this.showImgView = true;
+                    this.imgSrc = obj.src;
+                }
+            })
         }
     }
 }

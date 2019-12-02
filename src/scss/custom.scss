@@ -1,0 +1,87 @@
+.v-toolbar__content, .v-toolbar__extension {
+    padding: 0;
+}
+
+.v-application .hljs {
+    border-radius: 5px;
+    overflow-x: auto;
+    line-height: 1.6;
+}
+
+.v-application code {
+    font-size: 85%;
+    font-family: SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;
+    border: 1px solid #ddd;
+    background: #f6f6f6;
+    padding: .15em;
+    border-radius: 3px;
+    margin: 0 3px;
+    color: #c7254e;
+    display: inline;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+.v-application .md .hljs code {
+    border: 0px;
+    background-color: rgba(0,0,0,0);
+    color           : #a9b7c6;
+    font-size       : 85%;
+    display         : inherit;
+    padding         : 5px;
+    margin          : 0px;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    width: max-content;
+}
+
+.hljs-number, .hljs-built_in, .hljs-builtin-name, .hljs-literal, .hljs-type, .hljs-params, .hljs-meta, .hljs-link {
+    color: #f99157;
+}
+
+.v-application .md code:after,
+.v-application .md code:before {
+    letter-spacing: -.6em;
+    content: "\00a0";
+}
+
+.v-application .md h1 {
+    font-size: 1.8em;
+    margin   : .3em 0 .6em 0
+}
+
+.v-application .md h2 {
+    padding-bottom: .3em;
+    font-size: 1.5em;
+    border-bottom: 1px solid #eaecef;
+}
+
+.v-application .md h3 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.v-application .md p {
+    margin: 12px 0;
+    line-height: 1.6;
+}
+
+.v-application .md blockquote {
+    padding: .1rem 1rem;
+    background: #f9f9f9;
+    font-size: 85%;
+    color: #6a737d;
+    border-left: .25em solid #dfe2e5;
+    margin: 14px 0;
+}
+
+.v-application .md img {
+    text-align: center;
+    width: auto;
+    max-width: 100%;
+    max-height: 400px;
+}
+
+.markdown-text {
+    word-wrap: break-word
+}
