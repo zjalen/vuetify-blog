@@ -151,7 +151,6 @@ export default {
         skip: (this.current_page - 1) * this.per_page_count
       };
       getArticles(params).then(response => {
-        console.log(response);
         setTimeout(()=> {
           this.loading = false;
           this.articles = response.data.articles;

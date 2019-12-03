@@ -1,5 +1,5 @@
 .v-toolbar__content, .v-toolbar__extension {
-    padding: 0;
+    padding: 0 !important;
 }
 
 .v-application .hljs {
@@ -49,16 +49,25 @@
 }
 
 .v-application .md h2 {
-    padding-bottom: .3em;
+    margin: 1em 0;
     font-size: 1.5em;
     border-bottom: 1px solid #eaecef;
 }
 
 .v-application .md h3 {
-    margin-top: 16px;
-    margin-bottom: 16px;
+    margin: 16px 0;
     font-weight: 600;
     line-height: 1.25;
+}
+
+.v-application .md h4 {
+    margin: 12px 0;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.v-application .md h5 {
+    margin: 12px 0;
 }
 
 .v-application .md p {
@@ -68,9 +77,9 @@
 
 .v-application .md blockquote {
     padding: .1rem 1rem;
-    background: #f9f9f9;
+    background: rgba(240, 240, 240, .5);
     font-size: 85%;
-    color: #6a737d;
+    color: #37474F;
     border-left: .25em solid #dfe2e5;
     margin: 14px 0;
 }

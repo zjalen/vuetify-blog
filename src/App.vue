@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import './scss/custom.scss';
 // import HelloWorld from './components/HelloWorld';
 import TopHeader from "./components/layouts/TopHeader";
 import MainContent from "./components/layouts/MainContent";
