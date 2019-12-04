@@ -8,14 +8,14 @@
                 class="mx-auto"
                 :loading="loading"
                 type="article">
-                <v-card>
-                    <div class="text-center font-regular headline pa-4">
+                <v-card elevation="0" style="border: 1px solid #d1d5da;" class="pa-4 pa-sm-11">
+                    <div class="text-center font-regular headline">
                         {{article.title}}
                     </div>
-                    <div class="text-right font-weight-light body-1 pt-3 pr-3">
+                    <div class="text-right font-weight-light body-1 pt-3">
                         <v-icon left>mdi-clock-outline</v-icon>{{article.created_at}}
                     </div>
-                    <v-col v-if="article.topic || article.category" cols="12" class="d-flex flex-sm-row flex-column-reverse">
+                    <div v-if="article.topic || article.category" cols="12" class="d-flex flex-sm-row flex-column-reverse py-3">
                         <v-btn small v-if="article.topic" class="mb-2" outlined color="tertiary" @click="onTopicClick(article.topic.name)">
                             <v-icon left>mdi-file-document-box-multiple-outline</v-icon>
                             主题：{{article.topic.name}}
@@ -25,10 +25,10 @@
                             <v-icon left>mdi-file-document-box-multiple-outline</v-icon>
                             分类：{{article.category.name}}
                         </v-btn>
-                    </v-col>
-                    <v-divider class="ma-3"></v-divider>
+                    </div>
+                    <v-divider class="my-3"></v-divider>
 
-                    <div class="pa-3 md" v-html="article.content_html">
+                    <div class="md markdown-body" v-html="article.content_html">
                     </div>
                     <!-- <my-mark-down class="pa-3" :text="article.content_md"> </my-mark-down> -->
                     <!-- <mavon-editor 
@@ -42,11 +42,11 @@
                         :boxShadow="false" >
                     </mavon-editor> -->
 
-                    <v-divider class="ma-3"></v-divider>
-                    <div class="pa-3 notice">
+                    <v-divider class="my-3"></v-divider>
+                    <div class="notice">
                         原创文章，可以转载，但请注明出处，谢谢合作。Jalen的博客 (<a href="/">https://www.jalen.top</a>)
                     </div>
-                    <div class="pa-3">
+                    <div>
                         标签：
                         <v-btn 
                         v-for="tag in article.tags" 
@@ -59,9 +59,9 @@
                             <v-icon left>mdi-tag-outline</v-icon>{{tag.name}}
                         </v-btn>
                     </div>
-                    <v-divider class="ma-3"></v-divider>
+                    <v-divider></v-divider>
 
-                    <v-col cols="12" class="d-flex flex-sm-row flex-column-reverse">
+                    <div cols="12" class="d-flex flex-sm-row flex-column-reverse py-3">
                         <v-btn style="overflow: hidden" small color="secondary" rounded v-if="article.last" class="mb-2" outlined @click="toArticle(article.last)">
                             <v-icon left>mdi-chevron-left</v-icon>
                             上一篇：{{prev_title}}
@@ -71,7 +71,7 @@
                             下一篇：{{next_title}}
                             <v-icon right>mdi-chevron-right</v-icon>
                         </v-btn>
-                    </v-col>
+                    </div>
                 </v-card>
             </v-skeleton-loader>
         </v-col>
@@ -81,7 +81,7 @@
 
 <script>
 // import hljs from 'highlight.js' //导入代码高亮文件
-import 'highlight.js/styles/androidstudio.css'  //导入代码高亮样式
+import '../scss/custom-markdown.scss'
 // import { mavonEditor } from 'mavon-editor'
 // import 'mavon-editor/dist/css/index.css'
 
@@ -213,7 +213,8 @@ export default {
     border-radius: 4px;
     border-left: 5px solid var(--v-secondary-darken2);
     font-weight: 300;
-    margin: 0 12px;
+    margin: 12px 0;
+    padding: 8px;
     color: #fff;
     background-color: var(--v-secondary-lighten1);
 }

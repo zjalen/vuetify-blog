@@ -3,6 +3,7 @@
         <v-btn
             v-if="goTopShow"
             ref="button"
+            title="返回顶部"
             fab
             absolute
             fixed
