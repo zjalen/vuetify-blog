@@ -43,7 +43,7 @@
                     </mavon-editor> -->
 
                     <v-divider class="ma-3"></v-divider>
-                    <div class="pa-3">
+                    <div class="pa-3 notice">
                         原创文章，可以转载，但请注明出处，谢谢合作。Jalen的博客 (<a href="/">https://www.jalen.top</a>)
                     </div>
                     <div class="pa-3">
@@ -208,5 +208,13 @@ export default {
 <style lang=sass scoped>
 .v-note-wrapper {
     z-index: 1 !important;
+}
+.notice {
+    border-radius: 4px;
+    border-left: 5px solid var(--v-secondary-darken2);
+    font-weight: 300;
+    margin: 0 12px;
+    color: #fff;
+    background-color: var(--v-secondary-lighten1);
 }
 </style>
