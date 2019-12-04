@@ -30,7 +30,7 @@
             </v-avatar>
 
             <v-row dense>
-              <v-col :cols="12">
+              <v-col :cols="12" class="pt-3">
                 <div class="headline px-4">
                   <span class="error--text">[TOP] </span>{{article.title}}
                 </div>
@@ -67,6 +67,7 @@
       <v-pagination
         v-model="current_page"
         :length="page_count"
+        color="secondary"
         total-visible="10"
         v-if="articles.length > 1"
         @input="onPageChange"
@@ -82,7 +83,7 @@ export default {
     breadcrumbs: [
       {
         disabled: false,
-        href: '/',
+        href: '/#/',
         link: true,
         text: "首页",
       }
@@ -121,12 +122,12 @@ export default {
       })
       this.breadcrumbs.push({
         disabled: true,
-        href: '/cate/' + this.$route.params.cate,
+        href: '/#/cates/' + this.$route.params.cate,
         link: true,
         text: breadcrumb_name
       })
     }
-    this.current_page = this.$route.params.page ? Number(this.$route.params.page) : 1;
+    this.current_page = this.$route.query.page ? Number(this.$route.query.page) : 1;
     this.init();
   },
   computed: {
@@ -164,7 +165,7 @@ export default {
       let rt = {};
       rt['name'] = this.$route.name === '/' ? 'index' : this.$route.name;
       rt['params'] = {};
-      rt['params']['page'] = page;
+      rt['query']['page'] = page;
       this.$router.push(rt);
     },
     onCateClick(category_id) {
@@ -175,7 +176,7 @@ export default {
       rt['name'] = 'cate';
       rt['params'] = {};
       rt['params']['cate'] = category_id;
-      rt['params']['page'] = 1;
+      rt['query']['page'] = 1;
       this.$router.push(rt);
     },
     onTopicClick(topic_name) {

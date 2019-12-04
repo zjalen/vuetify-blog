@@ -1,6 +1,9 @@
 <template>
     <v-row dense>
         <v-col cols="12">
+            <v-breadcrumbs :items="breadcrumbs" class="pa-0"></v-breadcrumbs>
+        </v-col>
+        <v-col cols="12">
             <v-skeleton-loader
                 class="mx-auto"
                 :loading="loading"
@@ -96,6 +99,14 @@ export default {
     },
     data() {
         return {
+            breadcrumbs: [
+                {
+                    disabled: false,
+                    href: '/#/',
+                    link: true,
+                    text: "首页",
+                }
+            ],
             article: {},
             imgSrc: null,
             showImgView: false,
@@ -122,6 +133,24 @@ export default {
                 setTimeout(() => {
                     this.loading = false;
                     this.article = response;
+                    let breadcrumb_name = null;
+                    this.$store.state.menus.filter((menu) => {
+                        if (menu.id === Number(this.$route.params.cate)) {
+                            breadcrumb_name = menu.name;
+                        }
+                    })
+                    this.breadcrumbs.push({
+                        disabled: false,
+                        href: '/#/cates/' + this.$route.params.cate,
+                        link: true,
+                        text: breadcrumb_name
+                    });
+                    this.breadcrumbs.push({
+                        disabled: true,
+                        href: null,
+                        link: false,
+                        text: this.article.title
+                    });
                     this.$nextTick(function() {
                         let blocks = document.querySelectorAll("pre code");
                         blocks.forEach((block) => {
@@ -135,10 +164,8 @@ export default {
         onTagClick(tag_name) {
             this.$router.push({
                 name: 'index',
-                params: {
-                    page: 1,
-                },
                 query: {
+                    page: 1,
                     tag: tag_name
                 }
             })
@@ -146,11 +173,9 @@ export default {
         onTopicClick(topic_name) {
             let rt = {
                 name: 'index',
-                params: {
-                    page: 1,
-                },
                 query: {
-                topic: topic_name
+                    page: 1,
+                    topic: topic_name
                 }
             };
             this.$router.push(rt);

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app style="overflow-x: hidden">
     <top-header class="header"></top-header>
     <v-content class="content">
       <main-content></main-content>
@@ -8,22 +8,25 @@
     <v-overlay :value="loading">
       <v-progress-circular indeterminate size="64"></v-progress-circular>
     </v-overlay>
+    <go-to></go-to>
   </v-app>
 </template>
 
 <script>
 import './scss/custom.scss';
-// import HelloWorld from './components/HelloWorld';
+import GoTo from './components/GoTo';
 import TopHeader from "./components/layouts/TopHeader";
 import MainContent from "./components/layouts/MainContent";
 import BottomFooter from "./components/layouts/BottomFooter";
+
 export default {
   name: "App",
 
   components: {
     TopHeader,
     MainContent,
-    BottomFooter
+    BottomFooter,
+    GoTo
   },
 
   data: () => ({

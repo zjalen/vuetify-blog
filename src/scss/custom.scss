@@ -10,14 +10,14 @@
 
 .v-application code {
     font-size: 85%;
+    display: inline;
     font-family: SFMono-Regular,Consolas,"Liberation Mono",Menlo,Courier,monospace;
     border: 1px solid #ddd;
     background: #f6f6f6;
-    padding: .15em;
+    padding: 1px 5px 1px 5px;
     border-radius: 3px;
     margin: 0 3px;
     color: #c7254e;
-    display: inline;
     box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
 }
 

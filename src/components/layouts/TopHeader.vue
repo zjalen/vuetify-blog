@@ -10,7 +10,7 @@
       temporary
     >
       <v-list dense>
-          <v-list-item-group v-model="current_menu" color="secondary lighten-3">
+          <v-list-item-group v-model="current_menu" color="secondary lighten-4">
             <v-list-item link
                 v-for="(menu,index) in $store.state.menus" 
                 :key="index"  
@@ -112,7 +112,7 @@ export default {
     data() {
         return {
             title: 'JALEN博客',
-            slogan: "他沉默，随手写下一行 <code>Hello</code>, <code>World!</code>",
+            slogan: "他沉默，随手写下一行 <code>Hello</code>, <code>World</code>!",
             current_menu: 0,
             drawer: false,
         }
