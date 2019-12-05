@@ -8,7 +8,7 @@
                 class="mx-auto"
                 :loading="loading"
                 type="article">
-                <v-card elevation="0" style="border: 1px solid #d1d5da;" class="pa-4 pa-sm-11">
+                <v-card elevation="0" :style="card_style" class="pa-4 pa-sm-11">
                     <div class="text-center font-regular headline">
                         {{article.title}}
                     </div>
@@ -28,19 +28,18 @@
                     </div>
                     <v-divider class="my-3"></v-divider>
 
-                    <div class="md markdown-body" v-html="article.content_html">
-                    </div>
-                    <!-- <my-mark-down class="pa-3" :text="article.content_md"> </my-mark-down> -->
-                    <!-- <mavon-editor 
-                        class="pa-3" 
-                        v-model="article.content_md" 
+                    <!-- <div class="md markdown-body" v-html="article">
+                    </div> -->
+
+                    <mavon-editor 
+                        v-model="article" 
                         :ishljs="true" 
-                        codeStyle="androidstudio" 
+                        :codeStyle="codeStyle" 
                         :subfield="false" 
                         defaultOpen="preview" 
                         :toolbarsFlag="false" 
                         :boxShadow="false" >
-                    </mavon-editor> -->
+                    </mavon-editor>
 
                     <v-divider class="my-3"></v-divider>
                     <div class="notice">
@@ -80,22 +79,17 @@
 </template>
 
 <script>
-// import hljs from 'highlight.js' //导入代码高亮文件
+// 自定义样式，调整默认样式以适应 dark 模式
 import '../scss/custom-markdown.scss'
-// import { mavonEditor } from 'mavon-editor'
-// import 'mavon-editor/dist/css/index.css'
-
-import { getArticle } from '../api'
-
-// import MyMarkDown from '../components/MyMarkDown';
-// import 'vuetify-markdown-editor/dist/vuetify-markdown-editor.css';
+import { mavonEditor } from 'mavon-editor'
+import { getLocalArticle } from '../api'
+// 预览大图组件
 import MyImageViewer from '../components/MyImageViewer'
 
 export default {
     components: {
-        // mavonEditor
-        // MyMarkDown
-        MyImageViewer
+        mavonEditor,
+        MyImageViewer,
     },
     data() {
         return {
@@ -110,10 +104,14 @@ export default {
             article: {},
             imgSrc: null,
             showImgView: false,
-            loading: true
+            loading: true,
+            codeStyle: 'github',
+            card_style: 'border: 1px solid #f2f6fc'
         }
     },
     mounted() {
+        this.codeStyle = this.$store.getters.codeStyle;
+        this.card_style = this.$vuetify.theme.isDark ? 'border: 1px solid #6d6e6f' : 'border: 1px solid #f2f6fc';
         let id = this.$route.params.id;
         this.init(id);
     },
@@ -129,7 +127,8 @@ export default {
     },
     methods: {
         init(id) {
-            getArticle(id).then(response => {
+            // getArticle(id).then(response => {
+            getLocalArticle(id, 'md').then(response => {
                 setTimeout(() => {
                     this.loading = false;
                     this.article = response;
@@ -150,13 +149,6 @@ export default {
                         href: null,
                         link: false,
                         text: this.article.title
-                    });
-                    this.$nextTick(function() {
-                        let blocks = document.querySelectorAll("pre code");
-                        blocks.forEach((block) => {
-                            block.innerHTML = block.innerHTML.slice(0,-1)
-                        });
-                        this.addImgClickEvent();
                     });
                 }, 500);
             })

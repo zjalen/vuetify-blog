@@ -32,3 +32,15 @@ export function getArticle(id) {
     method: 'get',
   })
 }
+
+/**
+ * 获取本地文章
+ * @param {int} id 文章 id
+ * @param {string} type 文章类型 md||html
+ */
+export function getLocalArticle(id, type) {
+  return request({
+    url: '../assets/' + id + '.' + type,
+    method: 'get'
+  })
+}

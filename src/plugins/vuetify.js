@@ -16,6 +16,7 @@ export default new Vuetify({
             tertiary: colors.orange,
             accent: colors.shades,
             error: colors.red,
+            grey: colors.grey,
         },
         dark: {
             primary: colors.shades,
@@ -23,9 +24,10 @@ export default new Vuetify({
             tertiary: colors.orange,
             accent: colors.shades,
             error: colors.red,
+            grey: colors.grey,
         },
     },
-    light: true,
+    dark: true,
     options: {
         customProperties: true,
     },

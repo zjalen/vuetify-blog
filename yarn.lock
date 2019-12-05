@@ -528,14 +528,6 @@
     "@babel/helper-regex" "^7.4.4"
     regexpu-core "^4.6.0"
 
-"@babel/polyfill@7.2.5":
-  version "7.2.5"
-  resolved "https://registry.npm.taobao.org/@babel/polyfill/download/@babel/polyfill-7.2.5.tgz#6c54b964f71ad27edddc567d065e57e87ed7fa7d"
-  integrity sha1-bFS5ZPca0n7d3FZ9Bl5X6H7X+n0=
-  dependencies:
-    core-js "^2.5.7"
-    regenerator-runtime "^0.12.0"
-
 "@babel/preset-env@^7.6.3":
   version "7.6.3"
   resolved "https://registry.npm.taobao.org/@babel/preset-env/download/@babel/preset-env-7.6.3.tgz#9e1bf05a2e2d687036d24c40e4639dc46cef2271"
@@ -597,13 +589,6 @@
   dependencies:
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.2"
-
-"@babel/runtime@7.3.4":
-  version "7.3.4"
-  resolved "https://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.3.4.tgz#73d12ba819e365fcf7fd152aed56d6df97d21c83"
-  integrity sha1-c9ErqBnjZfz3/RUq7VbW35fSHIM=
-  dependencies:
-    regenerator-runtime "^0.12.0"
 
 "@babel/runtime@^7.6.3":
   version "7.6.3"
@@ -669,11 +654,6 @@
     lodash "4.17.14"
     resolve-from "^5.0.0"
     resolve-global "^1.0.0"
-
-"@flowjs/flow.js@^2.13.2":
-  version "2.13.2"
-  resolved "https://registry.npm.taobao.org/@flowjs/flow.js/download/@flowjs/flow.js-2.13.2.tgz#7d9f85c05cfef450c9bad0425dcd7d0c0b53a15d"
-  integrity sha1-fZ+FwFz+9FDJutBCXc19DAtToV0=
 
 "@hapi/address@2.x.x":
   version "2.1.2"
@@ -1988,7 +1968,7 @@ commander@2.17.x:
   version "2.17.1"
   resolved "https://registry.npm.taobao.org/commander/download/commander-2.17.1.tgz?cache=0&sync_timestamp=1572603237384&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcommander%2Fdownload%2Fcommander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
 
-commander@^2.18.0, commander@^2.19.0, commander@^2.20.0:
+commander@^2.18.0, commander@^2.20.0:
   version "2.20.3"
   resolved "https://registry.npm.taobao.org/commander/download/commander-2.20.3.tgz?cache=0&sync_timestamp=1572603237384&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcommander%2Fdownload%2Fcommander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
 
@@ -2150,7 +2130,7 @@ core-js-pure@^3.0.0:
   version "3.3.6"
   resolved "https://registry.npm.taobao.org/core-js-pure/download/core-js-pure-3.3.6.tgz#4c2378184acd8485a83ca9fdea201b844c554165"
 
-core-js@^2.4.0, core-js@^2.5.7:
+core-js@^2.4.0:
   version "2.6.10"
   resolved "https://registry.npm.taobao.org/core-js/download/core-js-2.6.10.tgz#8a5b8391f8cc7013da703411ce5b585706300d7f"
   integrity sha1-iluDkfjMcBPacDQRzltYVwYwDX8=
@@ -2736,15 +2716,6 @@ elliptic@^6.0.0:
     inherits "^2.0.1"
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
-
-emoji-mart-vue-fast@^5.4.15:
-  version "5.4.15"
-  resolved "https://registry.npm.taobao.org/emoji-mart-vue-fast/download/emoji-mart-vue-fast-5.4.15.tgz#e5dd8f19ee4f073028175f53fa51288896e84bbb"
-  integrity sha1-5d2PGe5PBzAoF19T+lEoiJboS7s=
-  dependencies:
-    "@babel/polyfill" "7.2.5"
-    "@babel/runtime" "7.3.4"
-    vue-virtual-scroller "^1.0.0-rc.2"
 
 emoji-regex@^7.0.1:
   version "7.0.3"
@@ -3464,11 +3435,6 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
-github-markdown-css@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.npm.taobao.org/github-markdown-css/download/github-markdown-css-3.0.1.tgz#d08db1060d2e182025e0d07d547cfe2afed30205"
-  integrity sha1-0I2xBg0uGCAl4NB9VHz+Kv7TAgU=
-
 glob-parent@^3.1.0:
   version "3.1.0"
   resolved "https://registry.npm.taobao.org/glob-parent/download/glob-parent-3.1.0.tgz#9e6af6299d8d3bd2bd40430832bd113df906c5ae"
@@ -3682,7 +3648,7 @@ highlight.js-async-webpack@^1.0.4:
   resolved "https://registry.npm.taobao.org/highlight.js-async-webpack/download/highlight.js-async-webpack-1.0.4.tgz#c06b67bf99f049045d62b756e5855b0912ec616c"
   integrity sha1-wGtnv5nwSQRdYrdW5YVbCRLsYWw=
 
-highlight.js@^9.11.0, highlight.js@^9.15.10, highlight.js@^9.16.2, highlight.js@^9.6.0:
+highlight.js@^9.11.0, highlight.js@^9.6.0:
   version "9.16.2"
   resolved "https://registry.npm.taobao.org/highlight.js/download/highlight.js-9.16.2.tgz#68368d039ffe1c6211bcc07e483daf95de3e403e"
 
@@ -4385,13 +4351,6 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
-katex@^0.10.2:
-  version "0.10.2"
-  resolved "https://registry.npm.taobao.org/katex/download/katex-0.10.2.tgz#39973edbb65eda5b6f9e7f41648781e557dd4932"
-  integrity sha1-OZc+27Ze2ltvnn9BZIeB5VfdSTI=
-  dependencies:
-    commander "^2.19.0"
-
 killable@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/killable/download/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"
@@ -4602,11 +4561,6 @@ map-visit@^1.0.0:
   resolved "https://registry.npm.taobao.org/map-visit/download/map-visit-1.0.0.tgz#ecdca8f13144e660f1b5bd41f12f3479d98dfb8f"
   dependencies:
     object-visit "^1.0.0"
-
-marked@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.npm.taobao.org/marked/download/marked-0.7.0.tgz#b64201f051d271b1edc10a04d1ae9b74bb8e5c0e"
-  integrity sha1-tkIB8FHScbHtwQoE0a6bdLuOXA4=
 
 mavon-editor@^2.7.7:
   version "2.7.7"
@@ -6076,11 +6030,6 @@ regenerator-runtime@^0.11.0:
   resolved "https://registry.npm.taobao.org/regenerator-runtime/download/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha1-vgWtf5v30i4Fb5cmzuUBf78Z4uk=
 
-regenerator-runtime@^0.12.0:
-  version "0.12.1"
-  resolved "https://registry.npm.taobao.org/regenerator-runtime/download/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
-  integrity sha1-+hpxVEdkwDb4xJsToIsllMn4oN4=
-
 regenerator-runtime@^0.13.2:
   version "0.13.3"
   resolved "https://registry.npm.taobao.org/regenerator-runtime/download/regenerator-runtime-0.13.3.tgz#7cf6a77d8f5c6f60eb73c5fc1955b2ceb01e6bf5"
@@ -6377,11 +6326,6 @@ schema-utils@^2.0.0, schema-utils@^2.1.0, schema-utils@^2.4.1, schema-utils@^2.5
   dependencies:
     ajv "^6.10.2"
     ajv-keywords "^3.4.1"
-
-scrollparent@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.npm.taobao.org/scrollparent/download/scrollparent-2.0.1.tgz#715d5b9cc57760fb22bdccc3befb5bfe06b1a317"
-  integrity sha1-cV1bnMV3YPsivczDvvtb/gaxoxc=
 
 select-hose@^2.0.0:
   version "2.0.0"
@@ -7300,11 +7244,6 @@ uuid@^3.0.1, uuid@^3.3.2:
   version "3.3.3"
   resolved "https://registry.npm.taobao.org/uuid/download/uuid-3.3.3.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fuuid%2Fdownload%2Fuuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
 
-v-click-outside@^2.1.3:
-  version "2.1.5"
-  resolved "https://registry.npm.taobao.org/v-click-outside/download/v-click-outside-2.1.5.tgz#aa69172fb41fcc79b26b9a4bc72a30ccf03f7a3c"
-  integrity sha1-qmkXL7QfzHmya5pLxyowzPA/ejw=
-
 validate-npm-package-license@^3.0.1:
   version "3.0.4"
   resolved "https://registry.npm.taobao.org/validate-npm-package-license/download/validate-npm-package-license-3.0.4.tgz#fc91f6b9c7ba15c857f4cb2c5defeec39d4f410a"
@@ -7364,11 +7303,6 @@ vue-loader@^15.7.0:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-observe-visibility@^0.4.3:
-  version "0.4.6"
-  resolved "https://registry.npm.taobao.org/vue-observe-visibility/download/vue-observe-visibility-0.4.6.tgz#878cb8ebcf3078e40807af29774e97105ebd519e"
-  integrity sha1-h4y4688weOQIB68pd06XEF69UZ4=
-
 vue-particles@^1.0.9:
   version "1.0.9"
   resolved "https://registry.npm.taobao.org/vue-particles/download/vue-particles-1.0.9.tgz#29d9cc2be0157df1c0a87ec3b96c96f33279526e"
@@ -7376,11 +7310,6 @@ vue-particles@^1.0.9:
   dependencies:
     particles.js "^2.0.0"
     vue "^2.2.6"
-
-vue-resize@^0.4.5:
-  version "0.4.5"
-  resolved "https://registry.npm.taobao.org/vue-resize/download/vue-resize-0.4.5.tgz#4777a23042e3c05620d9cbda01c0b3cc5e32dcea"
-  integrity sha1-R3eiMELjwFYg2cvaAcCzzF4y3Oo=
 
 vue-router@^3.1.3:
   version "3.1.3"
@@ -7405,16 +7334,7 @@ vue-template-es2015-compiler@^1.9.0:
   version "1.9.1"
   resolved "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
 
-vue-virtual-scroller@^1.0.0-rc.2:
-  version "1.0.0-rc.2"
-  resolved "https://registry.npm.taobao.org/vue-virtual-scroller/download/vue-virtual-scroller-1.0.0-rc.2.tgz#b03828496c87889641bdacc75510e5b1bf5bda7f"
-  integrity sha1-sDgoSWyHiJZBvazHVRDlsb9b2n8=
-  dependencies:
-    scrollparent "^2.0.1"
-    vue-observe-visibility "^0.4.3"
-    vue-resize "^0.4.5"
-
-vue@^2.2.6, vue@^2.6.10, vue@^2.6.6:
+vue@^2.2.6, vue@^2.6.10:
   version "2.6.10"
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
 
@@ -7423,26 +7343,6 @@ vuetify-loader@^1.3.0:
   resolved "https://registry.npm.taobao.org/vuetify-loader/download/vuetify-loader-1.3.0.tgz#759f1d16f3f211eddbeeffc5c0b24105f2582b07"
   dependencies:
     loader-utils "^1.2.0"
-
-vuetify-markdown-editor@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.npm.taobao.org/vuetify-markdown-editor/download/vuetify-markdown-editor-1.1.2.tgz#bc96237ab17f000f55055110c526eb3197065d8b"
-  integrity sha1-vJYjerF/AA9VBVEQxSbrMZcGXYs=
-  dependencies:
-    "@flowjs/flow.js" "^2.13.2"
-    emoji-mart-vue-fast "^5.4.15"
-    highlight.js "^9.15.10"
-    katex "^0.10.2"
-    marked "^0.7.0"
-    v-click-outside "^2.1.3"
-    vue "^2.6.6"
-    vuetify "^2.0.15"
-    vuetify-loader "^1.3.0"
-
-vuetify@^2.0.15:
-  version "2.1.12"
-  resolved "https://registry.npm.taobao.org/vuetify/download/vuetify-2.1.12.tgz#7b02de32d7a169db468576ea5d5e8f60c603069a"
-  integrity sha1-ewLeMtehadtGhXbqXV6PYMYDBpo=
 
 vuetify@^2.1.10:
   version "2.1.10"

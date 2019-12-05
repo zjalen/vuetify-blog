@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import vuetify from '../plugins/vuetify'
 
 Vue.use(Vuex);
 
@@ -9,6 +10,7 @@ export default new Vuex.Store({
         mounting: false,
         loading: false,
         menus: [],
+        codeStyle: 'github',
     },
 
     mutations: {
@@ -29,6 +31,7 @@ export default new Vuex.Store({
         mounting: state => state.app.mounting,
         loading: state => state.app.loading,
         menus: state => state.app.menus,
+        codeStyle: () => vuetify.preset.theme.dark ? 'androidstudio': 'github',
     },
 
     actions: {
