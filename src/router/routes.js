@@ -5,8 +5,7 @@ const routes = [
     {name: 'topic', path: '/topics/:topic', component: () => import('../views/Articles')},
     {name: 'tag', path: '/tags/:tag', component: () => import('../views/Articles')},
     {name: 'article',path: '/cates/:cate/articles/:id', component: () => import('../views/Article')},
-    // {name: 'about',path: '/about', component: resolve=>require(["./components/contents/About.vue"], resolve)},
-    // {name: 'link',path: '/link', component: resolve=>require(["./components/contents/Link.vue"], resolve)}
+    {name: 'page',path: '/pages/:page', component: () => import('../views/MyPage')},
     // {name: 'article', path: '/article/:id', component: ArticlePage},
 ];
 

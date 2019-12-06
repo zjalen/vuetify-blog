@@ -121,7 +121,7 @@ export default {
         getMenus().then(response => {
             let menus = response.data;
             this.$store.commit('setMenus', menus);
-            this.current_menu = this.$route.params.cate ? Number(this.$route.params.cate) : 0;
+            this.switchMenu()
         })
     },
     watch: {
@@ -142,6 +142,15 @@ export default {
     methods: {
         switchMenu() {
             this.current_menu = this.$route.params.cate ? Number(this.$route.params.cate) : 0;
+            let page = this.$route.params.page;
+            if (page) {
+                this.$store.getters.menus.forEach(menu => {
+                    if (menu.type === 'page' && menu.url.indexOf(page) > -1) {
+                        this.current_menu = menu.id;
+                        return;
+                    }
+                })
+            }
         },
         onTabClick(index) {
             this.onMenuClick(index);
@@ -150,10 +159,7 @@ export default {
             this.onMenuClick(index);
         },
         onMenuClick(index) {
-            if (!this.$route.params.cate && index === 0) {
-                return
-            }
-            if (Number(this.$route.params.cate) === index) {
+            if (index === this.current_menu) {
                 return
             }
             let menus = this.$store.state.menus;
@@ -163,7 +169,7 @@ export default {
                     menu = item;
                 }
             });
-            if (menu.url === 'about' || menu.url === 'link') {
+            if (menu.type === 'page') {
                 this.$router.push({path: menu.url});
                 return
             }

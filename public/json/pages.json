@@ -2,13 +2,13 @@
     {
         "id": 7,
         "name": "关于",
-        "url": "/markdown_files/about.md",
+        "url": "/pages/about",
         "type": "page"
     },
     {
         "id": 8,
         "name": "友情链接",
-        "url": "/markdown_files/link.md",
+        "url": "/pages/link",
         "type": "page"
     }
 ]
