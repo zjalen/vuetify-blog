@@ -145,7 +145,7 @@ export default {
       this.filters.topic = this.$route.query.topic;
       this.filters.tag= this.$route.query.tag;
       let params = {
-        menu_id : this.$route.params.cate,
+        category_id : this.$route.params.cate,
         topic_name: this.$route.query.topic,
         tag_name: this.$route.query.tag,
         limit: this.per_page_count,

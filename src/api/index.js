@@ -28,19 +28,29 @@ export function getArticles(params) {
  */
 export function getArticle(id) {
   return request({
-    url: '/api/getArticle?id=' + id,
+    url: '/articles/' + id,
     method: 'get',
   })
 }
 
 /**
- * 获取本地文章
- * @param {int} id 文章 id
- * @param {string} type 文章类型 md||html
+ * 获取 markdown 文章详情
+ * @param id
  */
-export function getLocalArticle(id, type) {
+export function getArticleMD(id) {
   return request({
-    url: '../assets/' + id + '.' + type,
-    method: 'get'
+    url: '/markdown_files/' + id + '.md',
+    method: 'get',
+  })
+}
+
+/**
+ * 获取 json 数据
+ * @param url
+ */
+export function getJsonData(url) {
+  return request({
+    url: url,
+    method: 'get',
   })
 }

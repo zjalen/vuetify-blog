@@ -1,4 +1,8 @@
 import Mock from 'mockjs'
+// import categories from '/json/categories.json'
+// import pages from '/json/pages.json'
+// import articles from '/json/index.json'
+import store from '../store'
 
 const List = []
 const count = 202
@@ -25,7 +29,7 @@ for (let i = 0; i < count; i++) {
     // image_uri,
     // platforms: ['a-platform'],
 
-    category: {id: 5, name: "系统相关"},
+    category: { id: 5, name: "系统相关" },
     category_id: 5,
     cover: image_uri,
     created_at: '@datetime',
@@ -33,79 +37,36 @@ for (let i = 0; i < count; i++) {
     id: '@increment',
     is_top: true,
     title: '这是一段中文文字，测试长度与标题',
-    topic: {id: 3, name: "Vuetify 入门教程"},
+    topic: { id: 3, name: "Vuetify 入门教程" },
     topic_id: 3,
     tags: ['前端', 'vue', 'js']
   }))
 }
 
-const Menus = [
-  {
-      id: 0,
-      name: '首页',
-      url: '',
-      children: [],
-  },
-  {
-    id: 1,
-    name: '前端',
-    url: '',
-    children: [],
-  },
-  {
-    id: 2,
-    name: 'PHP',
-    url: '',
-    children: [],
-  },
-  {
-    id: 3,
-    name: 'IOS',
-    url: '',
-    children: [],
-  },
-  {
-    id: 4,
-    name: 'Android',
-    url: '',
-    children: [],
-  },
-  {
-    id: 5,
-    name: '系统相关',
-    url: '',
-    children: [],
-  },
-  {
-    id: 6,
-    name: '杂谈',
-    url: '',
-    children: [],
-  },
-];
-
 export default [
-    {
-      url: '/articles',
-      type: 'get',
-      response: config => {
-        const { importance, type, title, page = 1, limit = 20, sort, tag_name, topic_name } = config.query
-  
-        let mockList = List.filter(item => {
+  {
+    url: '/articles\\?',
+    type: 'get',
+    response: config => {
+      const { importance, type, title, page = 1, limit = 20, sort, category_id, tag_name, topic_name } = config.query
+      
+        let articles = store.getters.articles;
+        let mockList = articles.filter(item => {
           if (importance && item.importance !== +importance) return false
           if (type && item.type !== type) return false
           if (title && item.title.indexOf(title) < 0) return false
           if (topic_name && item.topic.name !== topic_name) return false
-          if (tag_name && item.tags.indexOf(tag_name)) return false
+          if (tag_name && item.tags.indexOf(tag_name) < 0) return false
+          if (category_id && Number(item.category_id) !== Number(category_id)) return false
           return true
         })
-  
+
         if (sort === '-id') {
           mockList = mockList.reverse()
         }
-  
+
         const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
-  
+
         return {
           code: 200,
           data: {
@@ -116,27 +77,37 @@ export default [
             topic_name: "",
           }
         }
-      }
-    },
+    }
+  },
 
-    {
-      url: '/menus',
-      type: 'get',
-      response: () => {
-  
+  {
+    url: '/menus',
+    type: 'get',
+    response: () => {
+        let categories = store.getters.categories;
+        let pages = store.getters.pages;
         return {
           code: 200,
-          data: Menus
+          data: categories.concat(pages)
+        }
+    }
+  },
+
+  {
+    url: '/articles/\\d',
+    type: 'get',
+    response: config => {
+      let { id } = config.query
+      let parmas = null;
+      for (let index in config.query) {
+        if (index.indexOf("http") > -1) {
+          parmas = index.split('/');
+          break;
         }
       }
-    },
-  
-    {
-      url: '/articles/',
-      type: 'get',
-      response: config => {
-        const { id } = config.query
-        for (const article of List) {
+      id = parmas[parmas.length - 1];
+        let articles = store.getters.articles;
+        for (const article of articles) {
           if (article.id === +id) {
             return {
               code: 200,
@@ -144,46 +115,46 @@ export default [
             }
           }
         }
-      }
-    },
-  
-    {
-      url: '/article/pv',
-      type: 'get',
-      response: () => {
-        return {
-          code: 200,
-          data: {
-            pvData: [
-              { key: 'PC', pv: 1024 },
-              { key: 'mobile', pv: 1024 },
-              { key: 'ios', pv: 1024 },
-              { key: 'android', pv: 1024 }
-            ]
-          }
-        }
-      }
-    },
-  
-    {
-      url: '/article/create',
-      type: 'post',
-      response: () => {
-        return {
-          code: 20000,
-          data: 'success'
-        }
-      }
-    },
-  
-    {
-      url: '/article/update',
-      type: 'post',
-      response: () => {
-        return {
-          code: 20000,
-          data: 'success'
+    }
+  },
+
+  {
+    url: '/article/pv',
+    type: 'get',
+    response: () => {
+      return {
+        code: 200,
+        data: {
+          pvData: [
+            { key: 'PC', pv: 1024 },
+            { key: 'mobile', pv: 1024 },
+            { key: 'ios', pv: 1024 },
+            { key: 'android', pv: 1024 }
+          ]
         }
       }
     }
-  ]
+  },
+
+  {
+    url: '/article/create',
+    type: 'post',
+    response: () => {
+      return {
+        code: 20000,
+        data: 'success'
+      }
+    }
+  },
+
+  {
+    url: '/article/update',
+    type: 'post',
+    response: () => {
+      return {
+        code: 20000,
+        data: 'success'
+      }
+    }
+  }
+]

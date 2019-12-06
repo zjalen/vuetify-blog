@@ -32,7 +32,7 @@
                     </div> -->
 
                     <mavon-editor 
-                        v-model="article" 
+                        v-model="article.content_md" 
                         :ishljs="true" 
                         :codeStyle="codeStyle" 
                         :subfield="false" 
@@ -48,14 +48,14 @@
                     <div>
                         标签：
                         <v-btn 
-                        v-for="tag in article.tags" 
-                        :key="tag.tag_id" 
+                        v-for="(tag, index) in article.tags" 
+                        :key="index" 
                         class="mr-1 my-3"
                         small 
                         color="info" 
                         outlined 
-                        @click="onTagClick(tag.name)">
-                            <v-icon left>mdi-tag-outline</v-icon>{{tag.name}}
+                        @click="onTagClick(tag)">
+                            <v-icon left>mdi-tag-outline</v-icon>{{tag}}
                         </v-btn>
                     </div>
                     <v-divider></v-divider>
@@ -82,7 +82,7 @@
 // 自定义样式，调整默认样式以适应 dark 模式
 import '../scss/custom-markdown.scss'
 import { mavonEditor } from 'mavon-editor'
-import { getLocalArticle } from '../api'
+import { getArticle, getArticleMD } from '../api'
 // 预览大图组件
 import MyImageViewer from '../components/MyImageViewer'
 
@@ -127,11 +127,13 @@ export default {
     },
     methods: {
         init(id) {
-            // getArticle(id).then(response => {
-            getLocalArticle(id, 'md').then(response => {
+            getArticle(id).then(response => {
                 setTimeout(() => {
                     this.loading = false;
-                    this.article = response;
+                    this.article = response.data;
+                    getArticleMD(this.article.id).then(response => {
+                        this.article.content_md = response
+                    })
                     let breadcrumb_name = null;
                     this.$store.state.menus.filter((menu) => {
                         if (menu.id === Number(this.$route.params.cate)) {

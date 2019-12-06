@@ -17,7 +17,7 @@
     content: '';
 }
 
-.v-application .md img {
+.v-application .markdown-body img {
     text-align: center;
     width: auto;
     max-width: 100%;
@@ -47,7 +47,7 @@
 .markdown-body blockquote {
     color: var(--v-grey-base) !important;
     background-color: rgba(255, 255, 255, .12);
-    padding: 16px !important;
+    padding: 12px 16px !important;
 }
 
 .markdown-body pre code {

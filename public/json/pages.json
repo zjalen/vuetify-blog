@@ -1,0 +1,14 @@
+[
+    {
+        "id": 7,
+        "name": "关于",
+        "url": "/markdown_files/about.md",
+        "type": "page"
+    },
+    {
+        "id": 8,
+        "name": "友情链接",
+        "url": "/markdown_files/link.md",
+        "type": "page"
+    }
+]

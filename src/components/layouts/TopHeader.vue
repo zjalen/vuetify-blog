@@ -68,13 +68,13 @@
 
         <template v-slot:extension>
             <v-container style="max-width: 1185px;" class="px-3 py-0 my-0">
-                <v-toolbar-items class="d-sm-block d-none secondary darken-3" :style="`height: 48px; background:`" >
+                <v-toolbar-items class="d-sm-block d-none secondary darken-3" style="height: 48px;" >
                     <v-btn 
-                        middle 
+                        middle
+                        v-for="(menu,index) in $store.state.menus" 
+                        :key="index"
                         :text="menu.id !== current_menu"
                         :class="menu.id !== current_menu ? `secondary darken-3` : `secondary darken-1`"
-                        v-for="(menu,index) in $store.state.menus" 
-                        :key="index"  
                         elevation="0"
                         @click="onTabClick(index)">
                         {{ menu.name }}
@@ -121,6 +121,7 @@ export default {
         getMenus().then(response => {
             let menus = response.data;
             this.$store.commit('setMenus', menus);
+            this.current_menu = this.$route.params.cate ? Number(this.$route.params.cate) : 0;
         })
     },
     watch: {

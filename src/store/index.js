@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import vuetify from '../plugins/vuetify'
+import { getJsonData } from '../api'
 
 Vue.use(Vuex);
 
@@ -8,9 +9,15 @@ export default new Vuex.Store({
     state: {
         // 这里放全局参数
         mounting: false,
-        loading: false,
+        loading: true,
         menus: [],
         codeStyle: 'github',
+
+        // mock 数据
+        categories: null,
+        pages: null,
+        topics: null,
+        articles: null,
     },
 
     mutations: {
@@ -24,13 +31,32 @@ export default new Vuex.Store({
         setMenus(state, menus) {
             state.menus = menus
         },
+        setCategories(state, categories) {
+            state.categories = categories
+        },
+        setPages(state, pages) {
+            state.pages = pages
+        },
+        setTopics(state, topics) {
+            state.topics = topics
+        },
+        setArticles(state, articles) {
+            state.articles = articles
+        },
+        setJsonData(state, params) {
+            state[params.name] = params.value
+        }
     },
 
     getters: {
         // 这里是get方法
-        mounting: state => state.app.mounting,
-        loading: state => state.app.loading,
-        menus: state => state.app.menus,
+        mounting: state => state.mounting,
+        loading: state => state.loading,
+        menus: state => state.menus,
+        categories: state => state.categories,
+        topics: state => state.topics,
+        pages: state => state.pages,
+        articles: state => state.articles,
         codeStyle: () => vuetify.preset.theme.dark ? 'androidstudio': 'github',
     },
 
@@ -44,6 +70,34 @@ export default new Vuex.Store({
         },
         actionSetMenus({ commit }, menus) {
             commit('setMenus', menus)
+        },
+        actionSetCategories({ commit }, data) {
+            commit('setMenus', data)
+        },
+        actionSetPages({ commit }, data) {
+            commit('setPages', data)
+        },
+        actionSetTopics({ commit }, data) {
+            commit('setTopics', data)
+        },
+        actionSetArticles({ commit }, data) {
+            commit('setArticles', data)
+        },
+        actionGetJsonData ({ commit }, name) {
+            return new Promise((resolve, reject) => {
+                if (!this.state[name]) {
+                    getJsonData('/json/' + name + '.json').then(response => {
+                        let data = response;
+                        commit('setJsonData',{name: name, value: data});
+                        resolve(data)
+                    }).catch(error => {
+                        reject(error)
+                    })
+                } else {
+                    resolve (this.state[name])
+                }
+              });
+        //    commit('getJsonData', name);
         },
     },
 
