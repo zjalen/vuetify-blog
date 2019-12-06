@@ -5,7 +5,7 @@ const routes = [
     { name: 'topic', path: '/topics/:topic', component: () => import('../views/Articles') },
     { name: 'tag', path: '/tags/:tag', component: () => import('../views/Articles') },
     { name: 'article', path: '/cates/:cate/articles/:id', component: () => import('../views/Article') },
-    { name: 'page', path: '/pages/:page', component: () => import('../views/MyPage') },
+    { name: 'page', path: '/pages/:page', component: () => import('../views/Page') },
 ];
 
 export default routes;

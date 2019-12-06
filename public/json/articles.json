@@ -1,21 +1,19 @@
 [{
         "id": 1,
         "is_top": true,
+        "is_hidden": false,
         "title": "这是我的第一篇技术博客",
         "category": {
-            "id": 5,
             "name": "系统相关"
         },
         "category_id": 5,
         "cover": "/images/1.jpg",
         "created_at": "2018-08-08 18:30:12",
         "description": "这是我的第一篇技术博客，分享我在学习中遇到的一些问题，希望大家能够通过交流相互学习，若有所得，则更好不过",
-        "content_md": "/articles/1.md",
+        "content_md": "",
         "topic": {
-            "id": 1,
             "name": "从零开始学习 vuetify"
         },
-        "topic_id": 1,
         "tags": ["前端", "vue", "js"]
     }
 ]

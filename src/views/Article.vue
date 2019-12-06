@@ -234,7 +234,7 @@ export default {
   }
 };
 </script>
-<style lang=sass scoped>
+<style lang=scss scoped>
 .v-note-wrapper {
     z-index: 1 !important;
 }

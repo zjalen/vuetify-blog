@@ -50,7 +50,7 @@
             <div class="slogan d-none d-sm-block" v-html="slogan"></div>
           </v-flex>
           <v-spacer></v-spacer>
-          <v-btn small icon>
+          <v-btn small icon target="_blank" href="https://github.com/zjalen/vuetify-blog">
             <v-icon>mdi-github-circle</v-icon>
           </v-btn>
           <v-btn icon small class="ml-2 d-block d-md-none" @click.stop="drawer = !drawer">
@@ -73,19 +73,6 @@
             >{{ menu.name }}</v-btn>
           </v-toolbar-items>
           <div class="slogan d-block d-sm-none" v-html="slogan"></div>
-          <!-- <v-tabs
-                    v-model="current_menu"
-                    align-with-title
-                    :background-color="$vuetify.theme.currentTheme.secondary.lighten1"
-                    @change="onTabChange"
-                    show-arrows
-                >
-                    <v-tabs-slider color="primary"></v-tabs-slider>
-
-                    <v-tab v-for="(menu,index) in $store.state.menus" :key="index"  @on-item-click="onTabClick(index)">
-                    {{ menu.name }}
-                    </v-tab>
-          </v-tabs>-->
         </v-container>
       </template>
     </v-app-bar>
@@ -184,7 +171,7 @@ export default {
   }
 };
 </script>
-<style scoped lang=sass>
+<style scoped lang=scss>
 .blog-title {
   font-size: 30px;
   color: var(--v-primary-base);
