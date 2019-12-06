@@ -39,7 +39,7 @@
             <v-row dense>
               <v-col :cols="12" class="pt-3">
                 <div class="headline px-4">
-                  <span class="error--text">[TOP]</span>
+                  <span v-if="article.is_top" class="error--text">[TOP]</span>
                   {{article.title}}
                 </div>
 

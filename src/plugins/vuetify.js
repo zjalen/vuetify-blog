@@ -27,7 +27,7 @@ export default new Vuetify({
         grey: colors.grey,
       },
     },
-    light: true,
+    dark: true,
     options: {
       customProperties: true,
     },

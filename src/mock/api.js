@@ -12,12 +12,22 @@ export default [
       let mockList = articles.filter(item => {
         if (importance && item.importance !== +importance) return false
         if (type && item.type !== type) return false
+        if (item.is_hidden) return false
         if (title && item.title.indexOf(title) < 0) return false
         if (topic_name && item.topic.name !== topic_name) return false
         if (tag_name && item.tags.indexOf(tag_name) < 0) return false
         if (category_id && Number(item.category_id) !== Number(category_id)) return false
         return true
       })
+
+      let topList = [];
+      let otherList = [];
+      mockList.forEach(item => {
+        if (item.is_top) return topList.push(item);
+        else return otherList.push(item);
+      })
+
+      mockList = topList.concat(otherList);
 
       if (sort === '-id') {
         mockList = mockList.reverse()
