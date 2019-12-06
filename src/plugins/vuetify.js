@@ -10,26 +10,26 @@ Vue.use(Vuetify)
 export default new Vuetify({
   theme: {
     themes: {
-        light: {
-            primary: colors.lightGreen,
-            secondary: colors.teal,
-            tertiary: colors.orange,
-            accent: colors.shades,
-            error: colors.red,
-            grey: colors.grey,
-        },
-        dark: {
-            primary: colors.shades,
-            secondary: colors.blueGrey,
-            tertiary: colors.orange,
-            accent: colors.shades,
-            error: colors.red,
-            grey: colors.grey,
-        },
+      light: {
+        primary: colors.lightGreen,
+        secondary: colors.teal,
+        tertiary: colors.orange,
+        accent: colors.shades,
+        error: colors.red,
+        grey: colors.grey,
+      },
+      dark: {
+        primary: colors.shades,
+        secondary: colors.blueGrey,
+        tertiary: colors.orange,
+        accent: colors.shades,
+        error: colors.red,
+        grey: colors.grey,
+      },
     },
     light: true,
     options: {
-        customProperties: true,
+      customProperties: true,
     },
   },
 })

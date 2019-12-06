@@ -57,7 +57,7 @@ export default new Vuex.Store({
         topics: state => state.topics,
         pages: state => state.pages,
         articles: state => state.articles,
-        codeStyle: () => vuetify.preset.theme.dark ? 'androidstudio': 'github',
+        codeStyle: () => vuetify.preset.theme.dark ? 'androidstudio' : 'github',
     },
 
     actions: {
@@ -83,21 +83,21 @@ export default new Vuex.Store({
         actionSetArticles({ commit }, data) {
             commit('setArticles', data)
         },
-        actionGetJsonData ({ commit }, name) {
+        actionGetJsonData({ commit }, name) {
             return new Promise((resolve, reject) => {
                 if (!this.state[name]) {
                     getJsonData('/json/' + name + '.json').then(response => {
                         let data = response;
-                        commit('setJsonData',{name: name, value: data});
+                        commit('setJsonData', { name: name, value: data });
                         resolve(data)
                     }).catch(error => {
                         reject(error)
                     })
                 } else {
-                    resolve (this.state[name])
+                    resolve(this.state[name])
                 }
-              });
-        //    commit('getJsonData', name);
+            });
+            //    commit('getJsonData', name);
         },
     },
 

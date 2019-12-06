@@ -1,20 +1,20 @@
 <template>
-    <Editor 
-        v-model="text"
-        mode="Rendered"
-        ref="render"
-        hint="Test"
-        nativeEmoji
-        :outline="false"
-        :preview="true"
-    />
+  <Editor
+    v-model="text"
+    mode="Rendered"
+    ref="render"
+    hint="Test"
+    nativeEmoji
+    :outline="false"
+    :preview="true"
+  />
 </template>
 
 <script>
-import { Editor } from 'vuetify-markdown-editor';
+import { Editor } from "vuetify-markdown-editor";
 
 // CSS for Editor
-import 'vuetify-markdown-editor/dist/vuetify-markdown-editor.css';
+import "vuetify-markdown-editor/dist/vuetify-markdown-editor.css";
 
 /* Editor is a Vue component
  * Renderer is the internal rendering function
@@ -22,18 +22,17 @@ import 'vuetify-markdown-editor/dist/vuetify-markdown-editor.css';
  */
 
 export default {
-    props: {
-        text: {
-            default: '',
-            type: String
-        }
-    },
+  props: {
+    text: {
+      default: "",
+      type: String
+    }
+  },
   components: {
     Editor
   },
   data() {
-    return {
-    };
+    return {};
   }
 };
 </script>

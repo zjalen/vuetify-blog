@@ -1,23 +1,23 @@
 <template>
-    <v-scale-transition>
-        <v-btn
-            v-if="goTopShow"
-            ref="button"
-            title="返回顶部"
-            fab
-            absolute
-            fixed
-            right
-            bottom
-            origin="center center"
-            color="secondary lighten-1"
-            class="mb-12 mr-3"
-            style="z-index: 999"
-            @click="$vuetify.goTo(target, options)"
-        >
-            <v-icon>mdi-chevron-up</v-icon>
-        </v-btn>
-    </v-scale-transition>
+  <v-scale-transition>
+    <v-btn
+      v-if="goTopShow"
+      ref="button"
+      title="返回顶部"
+      fab
+      absolute
+      fixed
+      right
+      bottom
+      origin="center center"
+      color="secondary lighten-1"
+      class="mb-12 mr-3"
+      style="z-index: 999"
+      @click="$vuetify.goTo(target, options)"
+    >
+      <v-icon>mdi-chevron-up</v-icon>
+    </v-btn>
+  </v-scale-transition>
 </template>
 <script>
 import * as easings from "vuetify/es5/services/goto/easing-patterns";

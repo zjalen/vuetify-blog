@@ -5,5 +5,4 @@
   </v-container>
 </template>
 <style scoped>
-
 </style>

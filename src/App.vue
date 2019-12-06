@@ -1,10 +1,10 @@
 <template>
-<v-app style="overflow-x: hidden">
-  <component :is="home"></component>
-  <v-overlay :value="loading">
+  <v-app style="overflow-x: hidden">
+    <component :is="home"></component>
+    <v-overlay :value="loading">
       <v-progress-circular indeterminate size="64"></v-progress-circular>
     </v-overlay>
-</v-app>
+  </v-app>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default {
   name: "App",
   data() {
     return {
-      home: null,
+      home: null
     };
   },
   computed: {
@@ -23,19 +23,19 @@ export default {
     }
   },
   mounted() {
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.VUE_APP_MOCK === "1") {
       this.$store.dispatch("actionGetJsonData", "articles").then(() => {
         this.$store.dispatch("actionGetJsonData", "categories").then(() => {
           this.$store.dispatch("actionGetJsonData", "pages").then(() => {
             this.$store.dispatch("actionGetJsonData", "topics").then(() => {
-              this.$store.commit('setLoading', false);
+              this.$store.commit("setLoading", false);
               this.home = Home;
             });
           });
         });
       });
-    }else {
-      this.$store.commit('setLoading', false);
+    } else {
+      this.$store.commit("setLoading", false);
       this.home = Home;
     }
   }

@@ -5,8 +5,9 @@ import router from './router'
 import store from './store'
 
 import { mockXHR } from './mock'
+console.log(process.env)
 // 通过环境变量来判断是否需要加载启用 mockjs
-if (process.env.NODE_ENV === 'development') {
+if (process.env.VUE_APP_MOCK === "1") {
   mockXHR()
 }
 

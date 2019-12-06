@@ -31,7 +31,7 @@ export default {
   methods: {
     hideImg() {
       // 发送事件
-      this.$emit('hideImg')
+      this.$emit("hideImg");
     }
   }
 };
@@ -44,8 +44,8 @@ export default {
 }
 
 .icon-btn {
-    position: absolute;
-    right: -30px;
-    top: -30px;
+  position: absolute;
+  right: -30px;
+  top: -30px;
 }
 </style>

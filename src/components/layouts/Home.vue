@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import '../../scss/custom.scss';
-import GoTo from './GoTo';
+import "../../scss/custom.scss";
+import GoTo from "./GoTo";
 import TopHeader from "./TopHeader";
 import MainContent from "./MainContent";
 import BottomFooter from "./BottomFooter";
@@ -38,14 +38,13 @@ export default {
     text:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   }),
-  methods: {
-  }
+  methods: {}
 };
 </script>
 <style>
 .header {
   height: 168px;
-  background-color: rgba(0,0,0,0) !important;
+  background-color: rgba(0, 0, 0, 0) !important;
 }
 .footer {
   height: 123px;
