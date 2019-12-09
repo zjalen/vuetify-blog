@@ -7,6 +7,7 @@
           :key="index"
           class="mx-4"
           icon
+          :title="icon.title"
           target="_blank"
           :href="icon.href"
           @click="showDialog(icon)"
@@ -26,7 +27,7 @@
         <v-card>
           <v-card-title class="headline">感谢使用</v-card-title>
 
-          <v-card-text>喜欢的话，不妨去 github 点个 star。</v-card-text>
+          <v-card-text>喜欢的话，不妨去 Github 点个 Star。</v-card-text>
 
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -53,19 +54,23 @@ export default {
       icons: [
         {
           name: "mdi-home",
-          href: "/"
+          href: "/",
+          title: "主页" 
         },
         {
           name: "mdi-email",
-          href: "mailto:zjalen@163.com"
+          href: "mailto:zjalen@163.com",
+          title: "联系我" 
         },
         {
           name: "mdi-star",
-          href: ""
+          href: "",
+          title: "点个赞" 
         },
         {
           name: "mdi-github-circle",
-          href: "https://github.com/zjalen/vuetify-blog"
+          href: "https://github.com/zjalen/vuetify-blog",
+          title: "Github" 
         }
       ]
     };

@@ -50,11 +50,14 @@
             <div class="slogan d-none d-sm-block" v-html="slogan"></div>
           </v-flex>
           <v-spacer></v-spacer>
-          <v-btn small icon target="_blank" href="https://github.com/zjalen/vuetify-blog">
-            <v-icon>mdi-github-circle</v-icon>
+          <v-btn title="Github" media icon target="_blank" href="https://github.com/zjalen/vuetify-blog">
+            <v-icon class="display-1">mdi-github-circle</v-icon>
           </v-btn>
-          <v-btn icon small class="ml-2 d-block d-md-none" @click.stop="drawer = !drawer">
-            <v-icon>mdi-menu</v-icon>
+          <v-btn title="切换暗色/亮色主题" icon @click.stop="switchTheme">
+            <v-icon class="display-1">mdi-brightness-{{icon_light}}</v-icon>
+          </v-btn>
+          <v-btn  title="菜单" icon class="ml-2 d-block d-md-none" @click.stop="drawer = !drawer">
+            <v-icon class="display-1">mdi-menu</v-icon>
           </v-btn>
         </v-layout>
       </v-container>
@@ -114,9 +117,17 @@ export default {
     //         console.log(value);
     //         this.onMenuClick(value);
     //     }
-    // }
+    // },
+    icon_light() {
+      return this.$store.getters.dark ? 4 : 7;
+    }
   },
   methods: {
+    switchTheme() {
+      let theme = this.$store.getters.dark ? false : true;
+      this.$store.dispatch('actionSetDarkTheme', theme);
+      location.reload()
+    },
     switchMenu() {
       this.current_menu = this.$route.params.cate
         ? Number(this.$route.params.cate)
@@ -158,12 +169,10 @@ export default {
           rt["name"] = "index";
           rt["params"] = {};
           rt["params"]["cate"] = menu.id;
-          rt["params"]["page"] = 1;
         } else {
           rt["name"] = "cate";
           rt["params"] = {};
           rt["params"]["cate"] = menu.id;
-          rt["params"]["page"] = 1;
         }
         this.$router.push(rt);
       }

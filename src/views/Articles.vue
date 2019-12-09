@@ -193,7 +193,7 @@ export default {
     onPageChange(page) {
       let rt = {};
       rt["name"] = this.$route.name === "/" ? "index" : this.$route.name;
-      rt["params"] = {};
+      rt["query"] = {};
       rt["query"]["page"] = page;
       this.$router.push(rt);
     },
@@ -205,7 +205,6 @@ export default {
       rt["name"] = "cate";
       rt["params"] = {};
       rt["params"]["cate"] = category_id;
-      rt["query"]["page"] = 1;
       this.$router.push(rt);
     },
     onTopicClick(topic_name) {

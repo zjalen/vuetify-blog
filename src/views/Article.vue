@@ -34,7 +34,7 @@
               class="mb-2"
               outlined
               color="secondary"
-              @click="$router.push({name: 'cate', params: {id: article.category.id}})"
+              @click="$router.push({name: 'cate', params: {id: article.category_id}})"
             >
               <v-icon left>mdi-file-document-box-multiple-outline</v-icon>
               分类：{{article.category.name}}
@@ -83,10 +83,10 @@
               small
               color="secondary"
               rounded
-              v-if="article.last"
+              v-if="article.prev"
               class="mb-2"
               outlined
-              @click="toArticle(article.last)"
+              @click="toArticle(article.prev)"
             >
               <v-icon left>mdi-chevron-left</v-icon>
               上一篇：{{prev_title}}
@@ -154,7 +154,7 @@ export default {
   },
   computed: {
     prev_title() {
-      let title = this.article.last ? this.article.last.title : null;
+      let title = this.article.prev ? this.article.prev.title : null;
       return title.length > 16 ? title.substr(0, 16) + "..." : title;
     },
     next_title() {
@@ -213,7 +213,7 @@ export default {
       let rt = {
         name: "article",
         params: {
-          cate: article.category.id,
+          cate: article.category_id,
           id: article.id
         }
       };

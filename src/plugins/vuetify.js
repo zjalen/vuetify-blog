@@ -4,6 +4,7 @@ import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
 
 import colors from 'vuetify/lib/util/colors'
+import store from '../store'
 
 Vue.use(Vuetify)
 
@@ -27,7 +28,7 @@ export default new Vuetify({
         grey: colors.grey,
       },
     },
-    dark: true,
+    dark: store.getters.dark,
     options: {
       customProperties: true,
     },

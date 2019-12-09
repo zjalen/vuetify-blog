@@ -12,6 +12,7 @@ export default new Vuex.Store({
         loading: true,
         menus: [],
         codeStyle: 'github',
+        dark: false,
 
         // mock 数据
         categories: null,
@@ -27,6 +28,9 @@ export default new Vuex.Store({
         },
         setLoading(state, status) {
             state.loading = status
+        },
+        setDarkTheme(state, data) {
+            state.dark = data
         },
         setMenus(state, menus) {
             state.menus = menus
@@ -52,6 +56,7 @@ export default new Vuex.Store({
         // 这里是get方法
         mounting: state => state.mounting,
         loading: state => state.loading,
+        dark: state => sessionStorage.getItem('current_theme') === 'dark' ? true : state.dark,
         menus: state => state.menus,
         categories: state => state.categories,
         topics: state => state.topics,
@@ -82,6 +87,11 @@ export default new Vuex.Store({
         },
         actionSetArticles({ commit }, data) {
             commit('setArticles', data)
+        },
+        actionSetDarkTheme({ commit }, data) {
+            commit('setDarkTheme', data)
+            let theme = data ? 'dark' : 'light';
+            sessionStorage.setItem('current_theme', theme)
         },
         actionGetJsonData({ commit }, name) {
             return new Promise((resolve, reject) => {
