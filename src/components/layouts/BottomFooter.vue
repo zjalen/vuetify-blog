@@ -68,7 +68,7 @@ export default {
           title: "点个赞" 
         },
         {
-          name: "mdi-github-circle",
+          name: "mdi-github",
           href: "https://github.com/zjalen/vuetify-blog",
           title: "Github" 
         }
